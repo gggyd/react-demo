@@ -1,0 +1,8 @@
+.App {
+  background: blue; }
+  .App .b {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .App .b .c {
+      color: red; }
