@@ -1,46 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Link
+  Switch
 } from 'react-router-dom';
-
-import { connect } from 'react-redux';
-import App from './App';
+import LayoutComponet from './Layout';
 import Login from './containers/login';
-import About from './containers/about';
+import PrivateRoute from './privateRoute';
 
-const mapStateToProps = (state) => ({
-  authState: state.auth
-});
+class RouterComponent extends Component {
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/" component={LayoutComponet} />
+        </Switch>
+      </Router>
+    )
+  }
+};
 
-const PrivateRoute = ({ component: Component, authenticated, ...rest }) => (
-  <Route {...rest} render={props => (
-    authenticated ? (
-      <Component {...props} />
-    ) : (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />
-      )
-  )} />
-);
-
-const RouterComponent = (props) => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-
-      <Route exact path="/" component={App} />
-      <Route path="/login" component={Login} />
-      <PrivateRoute authenticated={props.authState.AuthState.authenticated} path="/about" component={About} />
-    </div>
-  </Router>
-);
-
-export default connect(mapStateToProps)(RouterComponent);
+export default RouterComponent;

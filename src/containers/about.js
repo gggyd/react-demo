@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import authActionCreators from '../actions/authActionCreators';
 import AboutActionCreators from '../actions/aboutActionCreators';
+import './about.css';
 
 class About extends Component {
   state = {
@@ -12,6 +12,13 @@ class About extends Component {
   render() {
     return (
       <div>
+        <p>About...</p>
+        <p>About...</p>
+        <p>About...</p>
+        <p>About...</p>
+        <p>About...</p>
+        <p>About...</p>
+        <p>About...</p>
         <p>About...</p>
         <button
           onClick={this.props.toggleAuthenticated.bind(this)} >
@@ -36,4 +43,4 @@ const mapDispatchToProps = (dispatch) => ({
   getUserInfo: () => (dispatch(AboutActionCreators.getUserInfo()))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(About));
+export default connect(mapStateToProps, mapDispatchToProps)(About);

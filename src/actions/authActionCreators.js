@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch';
 import RequestModul from '../api/requesModul';
 
 export const TOGGLE_AUTH_STATE = 'TOGGLE_AUTH_STATE';
@@ -14,7 +13,7 @@ let AuthActionCreators = {
     };
   },
 
-  login({ userName = 'admin', password='admin' }) {
+  login({ userName, password }) {
     return (dispatch) => {
       dispatch({ type: REQUEST_LOGIN });
 

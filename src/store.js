@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import auth from './reducers/auth';
 import about from './reducers/about';
+import menu from './reducers/menu';
+import user from './reducers/user';
 
 const logger = store => next => action => {
   console.log('dispatching', action);
@@ -12,7 +14,9 @@ const logger = store => next => action => {
 
 const reducers = combineReducers({
   auth,
-  about
+  about,
+  menu,
+  user
 });
 
 const store = createStore(
