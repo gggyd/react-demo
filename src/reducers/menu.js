@@ -6,18 +6,16 @@ import {
 import { combineReducers } from 'redux';
 
 let InitialData = {
-  menu: []
+  list: []
 };
 
 const menuState = (state = InitialData, action ) => {
   switch (action.type) {
     case RECEIVE_MENU:
-      return Object.assign({}, state, { menu: action.data });
+      return Object.assign({}, state, { list: action.data });
     default:
       return state
   }
 }
 
-export default combineReducers({
-  menuState
-});
+export default menuState

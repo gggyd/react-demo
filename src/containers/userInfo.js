@@ -95,9 +95,12 @@ class UserInfo extends Component {
   }  
 }
 
-const mapStateToProps = (state) => ({
-    list: state.user.list
-});
+const mapStateToProps = (state) => {
+  state;
+  return {
+    list: state.index.user.list
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   getUserList: () => (dispatch(UserActionCreators.getAdminUserList()))

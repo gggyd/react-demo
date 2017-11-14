@@ -37,8 +37,9 @@ class Login extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
-    if (this.props.authState.AuthState.authenticated) {
+    let { from } = this.props.location.state || { from: { pathname: '/' } };
+    let { auth } = this.props;
+    if (auth.authenticated) {
       return (
         <Redirect to={from}/>
       )
@@ -46,7 +47,7 @@ class Login extends Component {
 
     const { getFieldDecorator } = this.props.form;
 
-    return (this.props.authState.AuthState.authenticated ? 
+    return (auth.authenticated ? 
     <div>Logon</div>
     : <div>
       <Form onSubmit={this.handleSubmit} className="login-form">
@@ -74,9 +75,12 @@ class Login extends Component {
 
 const WrappedLoginForm = Form.create()(Login);
 
-const mapStateToProps = (state) => ({
-  authState: state.auth
-});
+const mapStateToProps = (state) => {
+  state;
+  return {
+    auth: state.index.auth
+  }
+};
 
 const mapDispatchToProps = (dispatch) => ({
   toggleAuthenticated: () => dispatch(authActionCreators.toggleAuthState()),

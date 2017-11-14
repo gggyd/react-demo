@@ -14,7 +14,6 @@ let AuthInitialData = {
 const AuthState = (state = AuthInitialData, action) => {
   switch (action.type) {
     case TOGGLE_AUTH_STATE:
-      // localStorage.setItem('uInfo', JSON.stringify(!state.authenticated));
       uInfoUtils.setUInfo(!state.authenticated);
       return Object.assign({}, state, {
         authenticated: !state.authenticated
@@ -35,6 +34,4 @@ const AuthState = (state = AuthInitialData, action) => {
   }
 };
 
-export default combineReducers({
-  AuthState
-});
+export default AuthState

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Layout, Menu, Icon } from 'antd';
-import { NavLink, withRouter } from 'react-router-dom';
-import MenuActionCreators from '../../actions/menuActionCreators';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Layout, Menu, Icon } from 'antd'
+import { NavLink, withRouter } from 'react-router-dom'
+import MenuActionCreators from '../../actions/menuActionCreators'
 
-const { Sider } = Layout;
+const { Sider } = Layout
 
 const getIcon = (icon) => {
   let nextIcon = '';
@@ -73,14 +73,14 @@ class LayoutSider extends Component {
         >
           {this.recursiveMenu(item.children)}
         </Menu.SubMenu>);
-    });
+    })
   
     return result;
-  };
+  }
 
   render() {
     let props = this.props;
-    let menus = this.props.menu.menuState.menu.length > 0 && this.recursiveMenu(this.props.menu.menuState.menu);
+    let list = this.props.list.length > 0 && this.recursiveMenu(this.props.list);
 
     return (
       <Sider
@@ -92,18 +92,21 @@ class LayoutSider extends Component {
         }}
       >
         <Menu mode="inline">
-          {menus}
+          {list}
         </Menu>
       </Sider>
     )
   }
-};
-const mapStateToProps = (state) => ({
-  menu: state.menu
-});
+}
+
+const mapStateToProps = (state) => {
+  return {
+    list: state.index.menu.list
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   getMenu: () => (dispatch(MenuActionCreators.getMenu()))
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutSider));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutSider))

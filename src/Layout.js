@@ -5,9 +5,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
-import About from './containers/about';
 import UserInfo from './containers/userInfo';
-import App from './App';
 import LayoutHeader from './containers/layout/header';
 import LayoutSider from './containers/layout/sider';
 
@@ -46,8 +44,7 @@ class LayoutComponent extends Component {
               background: '#fff'
             }}>
               <Switch>
-                <Route path={`${match.path}`} exact component={App} />
-                <Route path={`${match.path}about`} component={About} />
+                <Route path={`${match.path}`} exact component={UserInfo} />
                 <Route path={`${match.path}user`} component={UserInfo} />
                 <Redirect to={`${match.url}`} />
               </Switch>
