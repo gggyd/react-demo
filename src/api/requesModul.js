@@ -1,16 +1,20 @@
-import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch'
+import store from '../store'
+import authActionCreators from '../actions/authActionCreators'
+import messageUtil from '../utils/message'
 
 export default class RequestModul {
-  static BASE_URL = 'http://192.168.200.89:5526';
+  static BASE_URL = 'http://192.168.200.89:5526'
   static headers = {
 
   };
 
   constructor() {
-    this._checkStatus = this._checkStatus.bind(this);
-    this._parseJSON = this._parseJSON.bind(this);
-    this._parseText = this._parseText.bind(this);
-    this._fetchWithCORS = this._fetchWithCORS.bind(this);
+    this._checkStatus = this._checkStatus.bind(this)
+    this._parseJSON = this._parseJSON.bind(this)
+    this._parseText = this._parseText.bind(this)
+    this._fetchWithCORS = this._fetchWithCORS.bind(this)
+    this._handleApiCode = this._handleApiCode.bind(this)
   }
 
   _checkStatus(resp) {
@@ -29,6 +33,33 @@ export default class RequestModul {
     } else {
       return undefined;
     }
+  }
+
+  _handleApiCode(json) {
+    let code = json.code;
+
+    // messageUtil.success({title: 'myMessage', content: 'content.....'})
+    // messageUtil.openNotificationWithIcon({
+    //   type: 'success',
+    //   message: 'message',
+    //   description: 'description......'
+    // })
+
+    if (code === 0) return json;
+    switch(code) {
+      case 19000:// 数据访问错误
+      
+      break;
+    case 10003:// 请求参数错误
+      
+      break;
+    case 10009:// 未登录访问其他接口，跳转到登录
+      store.dispatch(authActionCreators.logout())
+      break;
+    case 31605:// 默认密码，回到修改密码界面
+    default:
+    }
+    
   }
 
   _parseText(resp) {
@@ -58,11 +89,14 @@ export default class RequestModul {
       body
     })
       .then(this._checkStatus, (error) => {
-        return error;
+        return error
       })
       .then(contentType === 'json' ? this._parseJSON: this._parseText, (error) => {
-        return error;
-      });
+        return error
+      })
+      .then(this._handleApiCode, (error) => {
+        return error
+      })
   }
 
   get({BASE_URL=RequestModul.BASE_URL, path='/', method='GET', contentType='json'}) {

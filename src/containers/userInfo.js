@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Table, Form, Row, Col, Input, Button, Icon } from 'antd';
-import UserActionCreators from '../actions/userActionCreators';
-const FormItem = Form.Item;
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Table, Form, Row, Col, Input, Button, Icon } from 'antd'
+import UserActionCreators from '../actions/userActionCreators'
+const FormItem = Form.Item
 
 class UserInfo extends Component {
   state = {
     expand: false,
-  };
+  }
   
   componentDidMount() {
     this.props.getUserList();
@@ -16,17 +16,17 @@ class UserInfo extends Component {
   handleSearch = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      console.log('Received values of form: ', values);
+      console.log('Received values of form: ', values)
     });
   }
 
   handleReset = () => {
-    this.props.form.resetFields();
+    this.props.form.resetFields()
   }
 
   toggle = () => {
-    const { expand } = this.state;
-    this.setState({ expand: !expand });
+    const { expand } = this.state
+    this.setState({ expand: !expand })
   }
 
   colums = [{
@@ -38,7 +38,7 @@ class UserInfo extends Component {
     title: '邮箱',
     dataIndex: 'email',
     key: 'email'
-  }];
+  }]
 
   getFields() {
     const count = this.state.expand ? 10 : 6;
@@ -57,7 +57,7 @@ class UserInfo extends Component {
             )}
           </FormItem>
         </Col>
-      );
+      )
     }
     return children;
   }
@@ -96,14 +96,13 @@ class UserInfo extends Component {
 }
 
 const mapStateToProps = (state) => {
-  state;
   return {
     list: state.index.user.list
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => ({
   getUserList: () => (dispatch(UserActionCreators.getAdminUserList()))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(UserInfo));
+export default connect(mapStateToProps, mapDispatchToProps)(Form.create()(UserInfo))

@@ -10,8 +10,8 @@ import './style/index.css'
 import registerServiceWorker from './registerServiceWorker'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <RouterComponent />
-  </Provider>
+    <Provider store={store}>
+      <RouterComponent />
+    </Provider>
   , document.getElementById('root'))
 registerServiceWorker()

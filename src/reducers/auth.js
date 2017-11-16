@@ -1,10 +1,10 @@
 import { 
   TOGGLE_AUTH_STATE,
   REQUEST_LOGIN,
-  RECEIVE_LOGIN
+  RECEIVE_LOGIN,
+  AUTH_LOGOUT
 } from '../actions/authActionCreators';
 
-import { combineReducers } from 'redux';
 import uInfoUtils from '../utils/uInfo';
 
 let AuthInitialData = {
@@ -28,6 +28,11 @@ const AuthState = (state = AuthInitialData, action) => {
       uInfoUtils.setUInfo(authenticated);
       return Object.assign({}, state, {
         authenticated: authenticated
+      });
+    case  AUTH_LOGOUT:
+      uInfoUtils.setUInfo(false);
+      return Object.assign({}, state, {
+        authenticated: false
       });
     default:
       return state;

@@ -76,7 +76,6 @@ class Login extends Component {
 const WrappedLoginForm = Form.create()(Login);
 
 const mapStateToProps = (state) => {
-  state;
   return {
     auth: state.index.auth
   }

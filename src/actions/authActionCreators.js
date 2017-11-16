@@ -1,10 +1,10 @@
-import RequestModul from '../api/requesModul';
+import userService from '../api/services/user'
+export const TOGGLE_AUTH_STATE = 'TOGGLE_AUTH_STATE'
+export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const REQUEST_LOGIN = 'REQUEST_LOGIN'
+export const RECEIVE_LOGIN = 'RECEIVE_LOGIN'
 
-export const TOGGLE_AUTH_STATE = 'TOGGLE_AUTH_STATE';
-export const REQUEST_LOGIN = 'REQUEST_LOGIN';
-export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';  
 
-const request = new RequestModul();
 
 let AuthActionCreators = {
   toggleAuthState() {
@@ -21,16 +21,18 @@ let AuthActionCreators = {
       data.append('username', userName);
       data.append('password', password);
 
-      return request.postWithFormData({
-        path: '/user/login',
-        method: 'POST',
-        body: data
-      })
+      userService.login(data)
         .then(json => dispatch({
           type: RECEIVE_LOGIN,
           data: json.data
         }));
     }
+  },
+
+  logout() {
+    return {
+      type: AUTH_LOGOUT
+    };
   }
 }
 

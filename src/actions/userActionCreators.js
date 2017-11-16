@@ -1,8 +1,7 @@
-import RequestModul from '../api/requesModul';
-const request = new RequestModul();
+import userService from '../api/services/user'
 
-export const REQUEST_ADMIN_USER_LIST = 'REQUEST_ADMIN_USER_LIST';
-export const RECEIVE_ADMIN_USER_LIST = 'RECEIVE_ADMIN_USER_LIST';
+export const REQUEST_ADMIN_USER_LIST = 'REQUEST_ADMIN_USER_LIST'
+export const RECEIVE_ADMIN_USER_LIST = 'RECEIVE_ADMIN_USER_LIST'
 
 let UserActionCreators = {
   getAdminUserList() {
@@ -11,9 +10,7 @@ let UserActionCreators = {
         type: REQUEST_ADMIN_USER_LIST
       });
 
-      request.getWithQueryParams({
-        path: '/user/admin/userinfo'
-      })
+      userService.getAdminInfo()
         .then(json => {return dispatch({
             type: RECEIVE_ADMIN_USER_LIST,
             data: json.data
@@ -23,4 +20,4 @@ let UserActionCreators = {
   }
 }
 
-export default UserActionCreators;
+export default UserActionCreators

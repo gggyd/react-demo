@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => (dispatch(AuthActionCreators.toggleAuthState()))
+  logout: () => (dispatch(AuthActionCreators.logout()))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LayoutHeader);

@@ -3,8 +3,6 @@ import {
   RECEIVE_MENU
 } from '../actions/menuActionCreators';
 
-import { combineReducers } from 'redux';
-
 let InitialData = {
   list: []
 };

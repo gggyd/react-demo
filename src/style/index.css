@@ -6,8 +6,9 @@
     height: 32px;
     background: #333;
     border-radius: 6px;
-    margin: 24px 16px;
-    float: left; }
+    margin: 16px;
+    float: left;
+    transition: width .3s; }
   #root .trigger {
     font-size: 18px;
     line-height: 64px;
@@ -16,3 +17,5 @@
     transition: color .3s; }
   #root .trigger:hover {
     color: #108ee9; }
+  #root .ant-layout-header.fold .logo {
+    width: 32px; }
