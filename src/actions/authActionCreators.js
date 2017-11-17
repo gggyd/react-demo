@@ -25,7 +25,10 @@ let AuthActionCreators = {
         .then(json => dispatch({
           type: RECEIVE_LOGIN,
           data: json.data
-        }));
+        }))
+        // .catch(err => {
+        //   console.log(err)
+        // })
     }
   },
 

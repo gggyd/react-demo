@@ -15,6 +15,9 @@ let MenuActionCreators = {
             data: json.data
           })
         })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 }

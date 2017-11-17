@@ -23,7 +23,7 @@ export default class RequestModul {
     } else {
       var error = new Error(resp.statusText);
       error.resp = resp;
-      throw error;
+      return Promise.reject(error);
     }
   }
 
@@ -38,28 +38,41 @@ export default class RequestModul {
   _handleApiCode(json) {
     let code = json.code;
 
-    // messageUtil.success({title: 'myMessage', content: 'content.....'})
-    // messageUtil.openNotificationWithIcon({
-    //   type: 'success',
-    //   message: 'message',
-    //   description: 'description......'
-    // })
-
     if (code === 0) return json;
-    switch(code) {
+
+    let errMsg = ''
+    switch (code) {
+      case -1:
+        console.log(json);
+        json.message.forEach((msg) => {
+          messageUtil.openNotificationWithIcon({
+            type: 'error',
+            message: msg.errorMessage
+          })
+        })
+        
+        break;
       case 19000:// 数据访问错误
-      
-      break;
-    case 10003:// 请求参数错误
-      
-      break;
-    case 10009:// 未登录访问其他接口，跳转到登录
-      store.dispatch(authActionCreators.logout())
-      break;
-    case 31605:// 默认密码，回到修改密码界面
-    default:
+
+        break;
+      case 10003:// 请求参数错误
+
+        break;
+      case 10009:// 未登录访问其他接口，跳转到登录
+        store.dispatch(authActionCreators.logout())
+        
+        messageUtil.openNotificationWithIcon({
+          type: 'warning',
+          message: '请重新登录'
+        })
+        errMsg = '10009'
+        break;
+
+      case 31605:// 默认密码，回到修改密码界面
+      default:
     }
-    
+
+    return Promise.reject(errMsg)
   }
 
   _parseText(resp) {
@@ -88,18 +101,18 @@ export default class RequestModul {
       credentials: 'include',
       body
     })
-      .then(this._checkStatus, (error) => {
-        return error
+      .then(this._checkStatus, error => {
+        return Promise.reject(error)
       })
-      .then(contentType === 'json' ? this._parseJSON: this._parseText, (error) => {
-        return error
+      .then(contentType === 'json' ? this._parseJSON : this._parseText, error => {
+        return Promise.reject(error)
       })
-      .then(this._handleApiCode, (error) => {
-        return error
+      .then(this._handleApiCode, error => {
+        return Promise.reject(error)
       })
   }
 
-  get({BASE_URL=RequestModul.BASE_URL, path='/', method='GET', contentType='json'}) {
+  get({ BASE_URL = RequestModul.BASE_URL, path = '/', method = 'GET', contentType = 'json' }) {
     const packageRequestURL = `${BASE_URL}${path}`;
 
     return this._fetchWithCORS({
@@ -108,7 +121,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  getWithQueryParams({BASE_URL=RequestModul.BASE_URL, path='/', queryParams={}, method='GET', contentType='json'}) {
+  getWithQueryParams({ BASE_URL = RequestModul.BASE_URL, path = '/', queryParams = {}, method = 'GET', contentType = 'json' }) {
     let queryString = '';
     for (let key in queryParams) {
       queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
@@ -123,7 +136,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  getWithRequestData({BASE_URL=RequestModul.BASE_URL, path='/', requestData={}, method='GET', contentType='json'}) {
+  getWithRequestData({ BASE_URL = RequestModul.BASE_URL, path = '/', requestData = {}, method = 'GET', contentType = 'json' }) {
     let requestDataString = encodeURIComponent(JSON.stringify(requestData));
 
     const packageRequestURL = `${BASE_URL}${path}?requestData=${requestDataString}`;
@@ -134,7 +147,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  post({BASE_URL=RequestModul.BASE_URL, path='/', body=undefined, method='POST', contentType='json'}) {
+  post({ BASE_URL = RequestModul.BASE_URL, path = '/', body = undefined, method = 'POST', contentType = 'json' }) {
     const packageRequestURL = `${BASE_URL}${path}`;
 
     if (!body) {
@@ -148,9 +161,9 @@ export default class RequestModul {
     }, contentType);
   }
 
-  postWithFormData({BASE_URL=RequestModul.BASE_URL, path='/', body={}, method='POST', contentType='json'}) {
+  postWithFormData({ BASE_URL = RequestModul.BASE_URL, path = '/', body = {}, method = 'POST', contentType = 'json' }) {
     const packageRequestURL = `${BASE_URL}${path}`;
-        
+
     return this._fetchWithCORS({
       url: packageRequestURL,
       method: method,

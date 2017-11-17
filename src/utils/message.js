@@ -10,6 +10,7 @@ export default {
   },
   
   openNotificationWithIcon({type, message, duration, description }) {
+    notification.destroy();
     notification[type]({
       message: message,
       duration: duration,

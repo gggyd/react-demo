@@ -16,6 +16,9 @@ let UserActionCreators = {
             data: json.data
           })
         })
+        // .catch((err) => {
+        //   console.log(err)
+        // })
     }
   }
 }

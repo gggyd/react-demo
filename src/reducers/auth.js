@@ -3,13 +3,13 @@ import {
   REQUEST_LOGIN,
   RECEIVE_LOGIN,
   AUTH_LOGOUT
-} from '../actions/authActionCreators';
+} from '../actions/authActionCreators'
 
-import uInfoUtils from '../utils/uInfo';
+import uInfoUtils from '../utils/uInfo'
 
 let AuthInitialData = {
-  authenticated: uInfoUtils.getUInfo() || false
-};
+  authenticated: uInfoUtils.getUserInfo() || false
+}
 
 const AuthState = (state = AuthInitialData, action) => {
   switch (action.type) {
@@ -19,23 +19,23 @@ const AuthState = (state = AuthInitialData, action) => {
         authenticated: !state.authenticated
       });
     case RECEIVE_LOGIN:
-      let authenticated = false;
-      if (action.data) {
-        authenticated = true;
+      let authenticated = false
+      if (!!action.data && !!action.data.username && action.data.state === 1) {
+        authenticated = true
+        uInfoUtils.setUserInfo(JSON.stringify(action.data))
       }
-
-      localStorage.setItem('userInfo', JSON.stringify(action.data));
-      uInfoUtils.setUInfo(authenticated);
+      
       return Object.assign({}, state, {
         authenticated: authenticated
       });
     case  AUTH_LOGOUT:
-      uInfoUtils.setUInfo(false);
+      uInfoUtils.removeUserInfo();
+      
       return Object.assign({}, state, {
         authenticated: false
       });
     default:
-      return state;
+      return state
   }
 };
 

@@ -1,21 +1,29 @@
 import { Cookies } from 'react-cookie'
-const uInfoKey = 'uInfo'
+const uInfoKey = 'userInfo'
 const cookies = new Cookies();
 
 export default {
-  getUInfo: function() {
-    let uInfo = localStorage.getItem(uInfoKey)
-    uInfo = cookies.get(uInfoKey)
+  getUserInfo() {
+    let userInfo = localStorage.getItem(uInfoKey)
 
-    if (!uInfo) {
-      return false;
+    if (!userInfo) {
+      userInfo = cookies.get(uInfoKey)
     }
 
-    return JSON.parse(uInfo)
+    if (!userInfo) {
+      return null;
+    }
+
+    return JSON.parse(userInfo)
   },
 
-  setUInfo: function(info) {
+  setUserInfo(info) {
     localStorage.setItem(uInfoKey, JSON.stringify(info))
     cookies.set(uInfoKey, JSON.stringify(info))
+  },
+
+  removeUserInfo() {
+    localStorage.removeItem(uInfoKey);
+    cookies.remove(uInfoKey);
   }
 }
