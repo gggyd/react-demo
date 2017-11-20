@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import store from '../store'
+import config from '../config'
 import authActionCreators from '../actions/authActionCreators'
 import messageUtil from '../utils/message'
 
@@ -23,19 +24,38 @@ export default class RequestModul {
     } else {
       var error = new Error(resp.statusText);
       error.resp = resp;
-      return Promise.reject(error);
+      return error;
     }
   }
 
   _parseJSON(resp) {
-    if (!!resp) {
-      return resp.json();
+    if (Object.prototype.toString.call(resp) === '[object Error]') {
+      return resp
+    }
+
+    if (!!resp && !!resp.json) {
+      return resp.json()
     } else {
       return undefined;
     }
   }
 
   _handleApiCode(json) {
+    if (Object.prototype.toString.call(json) === '[object Error]') {
+      switch (json.message) {
+        case 'Failed to fetch':
+          messageUtil.openNotificationWithIcon({
+            type: 'error',
+            message: '请检查你的网络',
+            duration: null
+          });
+          break
+        default:
+          break
+      }
+      return Promise.reject(json.message);
+    }
+
     let code = json.code;
 
     if (code === 0) return json;
@@ -102,18 +122,22 @@ export default class RequestModul {
       body
     })
       .then(this._checkStatus, error => {
-        return Promise.reject(error)
+        return error
       })
       .then(contentType === 'json' ? this._parseJSON : this._parseText, error => {
-        return Promise.reject(error)
+        return error
       })
       .then(this._handleApiCode, error => {
-        return Promise.reject(error)
+        return error
       })
   }
 
-  get({ BASE_URL = RequestModul.BASE_URL, path = '/', method = 'GET', contentType = 'json' }) {
-    const packageRequestURL = `${BASE_URL}${path}`;
+  get({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', method = 'GET', contentType = 'json' }) {
+    let packageRequestURL = `${BASE_URL}${path}`;
+
+    if (config.isDebug) {
+      packageRequestURL = `${debugPath}`
+    }
 
     return this._fetchWithCORS({
       url: packageRequestURL,
@@ -121,25 +145,18 @@ export default class RequestModul {
     }, contentType);
   }
 
-  getWithQueryParams({ BASE_URL = RequestModul.BASE_URL, path = '/', queryParams = {}, method = 'GET', contentType = 'json' }) {
+  getWithQueryParams({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', queryParams = {}, method = 'GET', contentType = 'json' }) {
     let queryString = '';
     for (let key in queryParams) {
       queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
     }
     let encodedQueryString = (queryString);
 
-    const packageRequestURL = `${BASE_URL}${path}?${encodedQueryString}`;
+    let packageRequestURL = `${BASE_URL}${path}?${encodedQueryString}`;
 
-    return this._fetchWithCORS({
-      url: packageRequestURL,
-      method: method
-    }, contentType);
-  }
-
-  getWithRequestData({ BASE_URL = RequestModul.BASE_URL, path = '/', requestData = {}, method = 'GET', contentType = 'json' }) {
-    let requestDataString = encodeURIComponent(JSON.stringify(requestData));
-
-    const packageRequestURL = `${BASE_URL}${path}?requestData=${requestDataString}`;
+    if (config.isDebug) {
+      packageRequestURL = `${debugPath}`
+    }
 
     return this._fetchWithCORS({
       url: packageRequestURL,
@@ -161,8 +178,12 @@ export default class RequestModul {
     }, contentType);
   }
 
-  postWithFormData({ BASE_URL = RequestModul.BASE_URL, path = '/', body = {}, method = 'POST', contentType = 'json' }) {
-    const packageRequestURL = `${BASE_URL}${path}`;
+  postWithFormData({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', body = {}, method = 'POST', contentType = 'json' }) {
+    let packageRequestURL = `${BASE_URL}${path}`;
+    if (config.isDebug) {
+      packageRequestURL = `${debugPath}`
+      method = 'GET'
+    }
 
     return this._fetchWithCORS({
       url: packageRequestURL,

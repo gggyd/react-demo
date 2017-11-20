@@ -1,0 +1,41 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "pageSize": 10,
+    "totalPage": 1,
+    "total":30,
+    "currentPage": 3,
+    "from": 1,
+    "to": 1,
+    "items": [
+      {
+        "userid": 0,
+        "username": "he",
+        "email": "zhao429546559@qq.com",
+        "company": "HotPu",
+        "rdsnumber": 321,
+        "state": 1,
+        "children": null
+      },
+      {
+        "userid": 1,
+        "username": "hehe",
+        "email": "zhao429546559@qq.com",
+        "company": "HotPu",
+        "rdsnumber": 432,
+        "state": 0,
+        "children": null
+      },
+      {
+        "userid": 2,
+        "username": "hehehe",
+        "email": "zhao429546559@qq.com",
+        "company": "HotPu",
+        "rdsnumber": 654,
+        "state": 1,
+        "children": null
+      }
+    ]
+  }
+}

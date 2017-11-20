@@ -1,0 +1,158 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": [
+      {
+          "menuName": "首页",
+          "path": "/page/admin/portal/index.html",
+          "iconClass": "fa-server",
+          "hasChild": false,
+          "children": []
+      },
+      {
+          "menuName": "用户管理",
+          "path": "/page/admin/user/index.html",
+          "hasChild": false,
+          "children": [],
+          "iconClass": "fa-user"
+      },
+      {
+          "menuName": "资源管理",
+          "path": "",
+          "iconClass": "fa-cloud",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "服务器管理",
+                  "path": "/page/admin/resource/server/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "RDS-SERVER组管理",
+                  "path": "/page/admin/resource/rdsserver/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "RDS实例型号管理",
+                  "path": "/page/admin/resource/rdsmodel/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "VIP管理",
+                  "path": "/page/admin/resource/vip/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "RDS实例管理",
+                  "path": "/page/admin/resource/rds/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "机房管理",
+                  "path": "/page/admin/resource/idc/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ]
+      },
+      {
+          "menuName": "审核",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "用户注册",
+                  "path": "/page/admin/examine/register/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "实例申请",
+                  "path": "/page/admin/examine/caseapply/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-user-circle"
+      },
+      {
+          "menuName": "监控",
+          "path": "",
+          "iconClass": "fa-server",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "任务进度",
+                  "path": "/page/admin/monitor/task/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "智能拓扑",
+                  "path": "/page/admin/monitor/topo/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ]
+      },
+      {
+          "menuName": "设置",
+          "path": "",
+          "iconClass": "fa-cloud",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "通知方式",
+                  "path": "/page/admin/setup/noticemode/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "备份设置",
+                  "path": "/page/admin/setup/backupset/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "分配方式设置",
+                  "path": "/page/admin/setup/autodistribute/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ]
+      },
+      {
+          "menuName": "帮助中心",
+          "path": "",
+          "iconClass": "fa-book",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "Api 文档",
+                  "path": "/page/admin/help/api/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ]
+      }
+  ]
+}

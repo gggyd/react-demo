@@ -33,9 +33,16 @@ let AuthActionCreators = {
   },
 
   logout() {
-    return {
-      type: AUTH_LOGOUT
-    };
+    return (dispatch) => {
+      dispatch({
+        type: AUTH_LOGOUT
+      });
+
+      userService.logout()
+        .then(json => {
+          console.log('logout', json)
+        })
+    }
   }
 }
 

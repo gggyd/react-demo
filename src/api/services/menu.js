@@ -5,6 +5,7 @@ let menu = {
   getMenu() {
     return request.get({
       path: '/user/menu',
+      debugPath: '/mockapi/admin-menu.json',
       method: 'GET'
     })
   }

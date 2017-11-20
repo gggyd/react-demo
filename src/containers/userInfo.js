@@ -1,14 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Table, Form, Row, Col, Input, Button, Icon } from 'antd'
+import FormHelper from '../components/helper/form'
 import UserActionCreators from '../actions/userActionCreators'
 const FormItem = Form.Item
+
+const fields = [
+  {
+    name: '用户名',
+    field: 'username',
+    type: 'inputNumber'
+  },
+  {
+    name: '邮箱',
+    field: 'email'
+  }
+];
 
 class UserInfo extends Component {
   state = {
     expand: false,
   }
-  
+
   componentDidMount() {
     this.props.getUserList();
   }
@@ -48,51 +61,54 @@ class UserInfo extends Component {
       wrapperCol: { span: 19 },
     };
     const children = [];
-    for (let i = 0; i < 10; i++) {
+
+    fields.forEach((item, index) => {
       children.push(
-        <Col span={8} key={i} style={{ display: i < count ? 'block' : 'none' }}>
-          <FormItem {...formItemLayout} label={`Field ${i}`}>
-            {getFieldDecorator(`field-${i}`)(
-              <Input placeholder="placeholder" />
+        <Col span={8} key={index + 1} style={{ display: index < count ? 'block' : 'none' }}>
+          <FormItem {...formItemLayout} label={`${item.name}`}>
+            {getFieldDecorator(`${item.field}`)(
+              <Input placeholder={`请添写${item.name}`} />
             )}
           </FormItem>
         </Col>
       )
-    }
+    })
     return children;
   }
 
   render() {
     let { list } = this.props;
-    let items = (list && list.items) || [ ];
+    let items = (list && list.items) || [];
 
     return (
       <div>
-      <Form
-        className="ant-advanced-search-form"
-        onSubmit={this.handleSearch}
-      >
-        <Row gutter={40}>{this.getFields()}</Row>
-        <Row>
-          <Col span={24} style={{ textAlign: 'right' }}>
-            <Button type="primary" htmlType="submit">Search</Button>
-            <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-              Clear
+        <Form
+          className="ant-advanced-search-form"
+          onSubmit={this.handleSearch}
+        >
+          <Row gutter={40}>{this.getFields()}</Row>
+          <Row>
+            <Col span={24} style={{ textAlign: 'right' }}>
+              <Button type="primary" htmlType="submit">Search</Button>
+              <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
+                Clear
             </Button>
-            <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
-              Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
-            </a>
-          </Col>
-        </Row>
-      </Form>
-      <br />
+              {
+                fields.length >= 10 && <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
+                  Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
+                </a>
+              }
+            </Col>
+          </Row>
+        </Form>
+        <br />
         {items.length > 0 && <Table columns={this.colums} dataSource={items.map(((item, index) => {
           item.key = index;
           return item;
-          }))}/>}
+        }))} />}
       </div>
     )
-  }  
+  }
 }
 
 const mapStateToProps = (state) => {

@@ -1,0 +1,15 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "uesrid": 83,
+    "username": "wangqing",
+    "email": "wangqing@hotpu.cn",
+    "company": "hotpu",
+    "rdsnumber": 0,
+    "state": 1,
+    "isdefaultpassword": 0,
+    "children": null,
+    "role": 1
+  }
+}
