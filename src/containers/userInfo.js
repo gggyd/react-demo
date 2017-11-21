@@ -5,18 +5,6 @@ import FormHelper from '../components/helper/form'
 import UserActionCreators from '../actions/userActionCreators'
 const FormItem = Form.Item
 
-const fields = [
-  {
-    name: '用户名',
-    field: 'username',
-    type: 'inputNumber'
-  },
-  {
-    name: '邮箱',
-    field: 'email'
-  }
-];
-
 class UserInfo extends Component {
   state = {
     expand: false,
@@ -53,27 +41,38 @@ class UserInfo extends Component {
     key: 'email'
   }]
 
-  getFields() {
-    const count = this.state.expand ? 10 : 6;
-    const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: { span: 5 },
-      wrapperCol: { span: 19 },
-    };
-    const children = [];
+  fields = [
+    {
+      name: '用户名',
+      field: 'username'
+    },
+    {
+      name: '邮箱',
+      field: 'email'
+    },
+    {
+      name: '状态',
+      field: 'status'
+    },
+    {
+      name: '时间',
+      field: 'timeRange',
+      type: 'timePicker'
+    },
+    {
+      name: '日期',
+      field: 'dateRange',
+      type: 'datePicker'
+    }
+  ]
 
-    fields.forEach((item, index) => {
-      children.push(
-        <Col span={8} key={index + 1} style={{ display: index < count ? 'block' : 'none' }}>
-          <FormItem {...formItemLayout} label={`${item.name}`}>
-            {getFieldDecorator(`${item.field}`)(
-              <Input placeholder={`请添写${item.name}`} />
-            )}
-          </FormItem>
-        </Col>
-      )
-    })
-    return children;
+  formItemLayout = {
+    labelCol: { span: 5 },
+    wrapperCol: { span: 19 },
+  };
+
+  colLayout = {
+    span: 6
   }
 
   render() {
@@ -86,7 +85,13 @@ class UserInfo extends Component {
           className="ant-advanced-search-form"
           onSubmit={this.handleSearch}
         >
-          <Row gutter={40}>{this.getFields()}</Row>
+          <Row>
+            <FormHelper 
+              form={this.props.form} 
+              fields={this.fields} 
+              formItemLayout={this.formItemLayout}
+              colLayout={this.colLayout} />
+          </Row>
           <Row>
             <Col span={24} style={{ textAlign: 'right' }}>
               <Button type="primary" htmlType="submit">Search</Button>
@@ -94,7 +99,7 @@ class UserInfo extends Component {
                 Clear
             </Button>
               {
-                fields.length >= 10 && <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
+                this.fields.length >= 10 && <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
                   Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
                 </a>
               }

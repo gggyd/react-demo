@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import { Layout} from 'antd';
+import { Layout, Breadcrumb } from 'antd';
 import {
   Route,
   Redirect,
-  Switch
+  Switch,
+  withRouter,
+  Link
 } from 'react-router-dom';
 import UserInfo from './containers/userInfo';
 import LayoutHeader from './containers/layout/header';
 import LayoutSider from './containers/layout/sider';
 
 const { Content } = Layout;
+const breadcrumbNameMap = {
+  '/': '首页',
+  '/user': '用户'
+};
+
 class LayoutComponent extends Component {
   constructor() {
     super();
@@ -28,7 +35,24 @@ class LayoutComponent extends Component {
   }
 
   render() {
-    let { match } = this.props;
+    let { location, match } = this.props
+    const pathSnippets = location.pathname.split('/').filter(i => i)
+    const extraBreadcrumbItems = pathSnippets.map((_, index) => {
+      const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+      return (
+        <Breadcrumb.Item key={url}>
+          <Link to={url}>
+            {breadcrumbNameMap[url]}
+          </Link>
+        </Breadcrumb.Item>
+      );
+    })
+
+    const breadcrumbItems = [(
+      <Breadcrumb.Item key="home">
+        <Link to="/">首页</Link>
+      </Breadcrumb.Item>
+    )].concat(extraBreadcrumbItems)
 
     return (
       <Layout style={{
@@ -38,8 +62,12 @@ class LayoutComponent extends Component {
         <Layout>
           <LayoutSider collapsed={this.state.collapsed} />
           <Layout>
+
+          <Breadcrumb style={{ margin: '16px 0 0 16px' }}>
+                {breadcrumbItems}
+              </Breadcrumb>
             <Content style={{
-              margin: '24px 16px',
+              margin: '12px 16px 24px 16px',
               padding: 24,
               background: '#fff'
             }}>
