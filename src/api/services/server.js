@@ -1,14 +1,14 @@
 import RequestModule from '../requestModule'
 const request = new RequestModule()
 
-let menu = {
-  getMenu() {
+let server = {
+  getList() {
     return request.get({
-      path: '/user/menu',
-      debugPath: '/mockapi/admin-menu.json',
+      path: '/admin/server/list',
+      debugPath: '/mockapi/resource/server/list.json',
       method: 'GET'
     })
   }
 }
 
-export default menu
+export default server

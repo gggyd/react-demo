@@ -1,0 +1,184 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "pageSize": 10,
+    "totalPage": 9,
+    "total": 89,
+    "currentPage": 3,
+    "from": 20,
+    "to": 29,
+    "items": [
+      {
+        "id": 1,
+        "name": "server_source 01",
+        "ip": "192.168.200.51",
+        "mysqlQty": 2,
+        "status": 1,
+        "statusStr": "正常",
+        "cpu": "12核",
+        "diskSpace": "100GB",
+        "memory": "32GB",
+        "connections": 800,
+        "idcPositionID": 1,
+        "idcPositionName": "上海",
+        "cpuUsed": {
+          "used": 25,
+          "selfUsed": 7,
+          "idel": 68
+        },
+        "memoryUsed": {
+          "used": 10,
+          "selfUsed": 10,
+          "idel": 80
+        },
+        "diskUsed": {
+          "used": 40,
+          "selfUsed": 20,
+          "idel": 40
+        },
+        "connectionsUsed": {
+          "used": 65,
+          "selfUsed": 0,
+          "idel": 35
+        }
+      },
+      {
+        "id": 2,
+        "name": "server_source 02",
+        "ip": "192.168.201.51",
+        "mysqlQty": 2,
+        "status": 1,
+        "statusStr": "正常",
+        "cpu": "24核",
+        "diskSpace": "100GB",
+        "memory": "32GB",
+        "connections": 800,
+        "idcPositionID": 1,
+        "idcPositionName": "北京",
+        "cpuUsed": {
+          "used": 40,
+          "selfUsed": 5,
+          "idel": 55
+        },
+        "memoryUsed": {
+          "used": 15,
+          "selfUsed": 15,
+          "idel": 70
+        },
+        "diskUsed": {
+          "used": 55,
+          "selfUsed": 10,
+          "idel": 35
+        },
+        "connectionsUsed": {
+          "used": 55,
+          "selfUsed": 0,
+          "idel": 45
+        }
+      },
+      {
+        "id": 3,
+        "name": "server_source 03",
+        "ip": "192.168.201.1",
+        "mysqlQty": 2,
+        "status": 1,
+        "statusStr": "正常",
+        "cpu": "24核",
+        "diskSpace": "100GB",
+        "memory": "32GB",
+        "connections": 800,
+        "idcPositionID": 1,
+        "idcPositionName": "北京",
+        "cpuUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "memoryUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "diskUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "connectionsUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        }
+      },
+      {
+        "id": 4,
+        "name": "server_source 04",
+        "ip": "192.168.201.111",
+        "mysqlQty": 2,
+        "status": 1,
+        "statusStr": "正常",
+        "cpu": "24核",
+        "diskSpace": "100GB",
+        "memory": "32GB",
+        "connections": 800,
+        "idcPositionID": 1,
+        "idcPositionName": "北京",
+        "cpuUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "memoryUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "diskUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "connectionsUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        }
+      },
+      {
+        "id": 5,
+        "name": "server_source 05",
+        "ip": "192.168.202.5",
+        "mysqlQty": 2,
+        "status": 1,
+        "statusStr": "正常",
+        "cpu": "24核",
+        "diskSpace": "100GB",
+        "memory": "32GB",
+        "connections": 800,
+        "idcPositionID": 1,
+        "idcPositionName": "北京",
+        "cpuUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "memoryUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "diskUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        },
+        "connectionsUsed": {
+          "used": 0,
+          "selfUsed": 0,
+          "idel": 100
+        }
+      }
+    ]
+  }
+}

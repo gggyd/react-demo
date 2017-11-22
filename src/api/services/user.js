@@ -1,5 +1,5 @@
-import RequestModul from '../requesModul'
-const request = new RequestModul()
+import RequestModule from '../requestModule'
+const request = new RequestModule()
 
 let user = {
   login(data) {

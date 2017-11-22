@@ -9,9 +9,7 @@ const logger = store => next => action => {
   return result;
 }
 
-const reducers = combineReducers({
-  index
-});
+const reducers = index
 
 const store = createStore(
   reducers, 

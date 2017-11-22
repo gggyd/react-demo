@@ -57,12 +57,21 @@ class LayoutSider extends Component {
     this.props.getMenu();
   }
 
+  handleClickMenu({item, key, selectedKeys}) {
+    let { history } = this.props
+    let { to } = item.props
+    
+    history.push({
+      pathname: getLinkTo(to)
+    })
+  }
+
   recursiveMenu = (list) => {
     var result = list.map((item) => {
       if (!item.hasChild) {
-        return <Menu.Item key={Date.now() * Math.random(10)}>
+        return <Menu.Item key={Date.now() * Math.random(10)} to={item.path} >
           {item.iconClass && <Icon type={getIcon(item.iconClass)} />}
-          <span><NavLink to={getLinkTo(item.path)}>{item.menuName}</NavLink></span>
+          <span>{item.menuName}</span>
         </Menu.Item>
       }
   
@@ -91,7 +100,7 @@ class LayoutSider extends Component {
           background: '#fff'
         }}
       >
-        <Menu mode="inline">
+        <Menu mode="inline" onSelect={this.handleClickMenu.bind(this)}>
           {list}
         </Menu>
       </Sider>
@@ -101,7 +110,7 @@ class LayoutSider extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.index.menu.list
+    list: state.menu.list
   }
 }
 

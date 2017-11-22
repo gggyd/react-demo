@@ -8,13 +8,16 @@ import {
   Link
 } from 'react-router-dom';
 import UserInfo from './containers/userInfo';
+import Server from './containers/admin/resource/server/index'
 import LayoutHeader from './containers/layout/header';
 import LayoutSider from './containers/layout/sider';
 
 const { Content } = Layout;
 const breadcrumbNameMap = {
   '/': '首页',
-  '/user': '用户'
+  '/user': '用户',
+  '/server': '服务器管理',
+  '/server/edit': '编辑'
 };
 
 class LayoutComponent extends Component {
@@ -72,9 +75,10 @@ class LayoutComponent extends Component {
               background: '#fff'
             }}>
               <Switch>
-                <Route path={`${match.path}`} exact component={UserInfo} />
+                <Route path={`${match.path}`} exact component={Server} />
                 <Route path={`${match.path}user`} component={UserInfo} />
-                <Redirect to={`${match.url}`} />
+                <Route path={`${match.path}server`} component={Server} />
+                <Redirect to={`${match.url}`} /> 
               </Switch>
             </Content>
           </Layout>

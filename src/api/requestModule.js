@@ -4,7 +4,7 @@ import config from '../config'
 import authActionCreators from '../actions/authActionCreators'
 import messageUtil from '../utils/message'
 
-export default class RequestModul {
+export default class RequestModule {
   static BASE_URL = 'http://192.168.200.89:5526'
   static headers = {
 
@@ -117,7 +117,7 @@ export default class RequestModul {
     return fetch(url, {
       method,
       mode: 'cors',
-      headers: RequestModul.headers,
+      headers: RequestModule.headers,
       credentials: 'include',
       body
     })
@@ -132,7 +132,7 @@ export default class RequestModul {
       })
   }
 
-  get({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', method = 'GET', contentType = 'json' }) {
+  get({ BASE_URL = RequestModule.BASE_URL, path = '/', debugPath = '', method = 'GET', contentType = 'json' }) {
     let packageRequestURL = `${BASE_URL}${path}`;
 
     if (config.isDebug) {
@@ -145,7 +145,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  getWithQueryParams({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', queryParams = {}, method = 'GET', contentType = 'json' }) {
+  getWithQueryParams({ BASE_URL = RequestModule.BASE_URL, path = '/', debugPath = '', queryParams = {}, method = 'GET', contentType = 'json' }) {
     let queryString = '';
     for (let key in queryParams) {
       queryString += `${key}=${encodeURIComponent(queryParams[key])}&`;
@@ -164,7 +164,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  post({ BASE_URL = RequestModul.BASE_URL, path = '/', body = undefined, method = 'POST', contentType = 'json' }) {
+  post({ BASE_URL = RequestModule.BASE_URL, path = '/', body = undefined, method = 'POST', contentType = 'json' }) {
     const packageRequestURL = `${BASE_URL}${path}`;
 
     if (!body) {
@@ -178,7 +178,7 @@ export default class RequestModul {
     }, contentType);
   }
 
-  postWithFormData({ BASE_URL = RequestModul.BASE_URL, path = '/', debugPath = '', body = {}, method = 'POST', contentType = 'json' }) {
+  postWithFormData({ BASE_URL = RequestModule.BASE_URL, path = '/', debugPath = '', body = {}, method = 'POST', contentType = 'json' }) {
     let packageRequestURL = `${BASE_URL}${path}`;
     if (config.isDebug) {
       packageRequestURL = `${debugPath}`

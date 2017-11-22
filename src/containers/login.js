@@ -77,7 +77,7 @@ const WrappedLoginForm = Form.create()(Login);
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.index.auth
+    auth: state.auth
   }
 };
 

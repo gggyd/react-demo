@@ -118,7 +118,7 @@ class UserInfo extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.index.user.list
+    list: state.user.list
   }
 }
 

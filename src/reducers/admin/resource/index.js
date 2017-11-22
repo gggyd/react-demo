@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import resource from './resource'
+import server from './server'
 
 export default combineReducers({
-  resource
+  server
 })

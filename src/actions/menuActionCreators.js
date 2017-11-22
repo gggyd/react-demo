@@ -1,12 +1,12 @@
 import menuService from '../api/services/menu'
 
-export const REQUEST_MENU = 'REQUEST_MENU';
-export const RECEIVE_MENU = 'RECEIVE_MENU';
+export const REQUEST_MENU = 'REQUEST_MENU'
+export const RECEIVE_MENU = 'RECEIVE_MENU'
 
 let MenuActionCreators = {
   getMenu() {
     return (dispatch) => {
-      dispatch({type: REQUEST_MENU});
+      dispatch({type: REQUEST_MENU})
       
       menuService.getMenu()
         .then(json => {
@@ -22,4 +22,4 @@ let MenuActionCreators = {
   }
 }
 
-export default MenuActionCreators;
+export default MenuActionCreators
