@@ -91,7 +91,7 @@
       {
           "menuName": "监控",
           "path": "",
-          "iconClass": "fa-server",
+          "iconClass": "fa-eye",
           "hasChild": true,
           "children": [
               {
@@ -113,7 +113,7 @@
       {
           "menuName": "设置",
           "path": "",
-          "iconClass": "fa-cloud",
+          "iconClass": "fa-wrench",
           "hasChild": true,
           "children": [
               {

@@ -1,26 +1,22 @@
 import {
-  REQUEST_SERVER_LIST,
-  RECEIVE_SERVER_LIST
-} from '../../../actions/admin/resource/serverActionCreators'
+  REQUEST_IDC_LIST,
+  RECEIVE_IDC_LIST
+} from '../../../actions/admin/resource/idcActionCreators'
 import { combineReducers } from 'redux'
 
 const initialData = {
-  listAndPagination: {
-
-  }
+  listAndPagination: { }
 }
 
 let listAndPagination = (state = initialData.listAndPagination, action) => {
   switch (action.type) {
-    case RECEIVE_SERVER_LIST:
+    case RECEIVE_IDC_LIST:
       return action.data
     default:
       return state
   }
 }
 
-let server = combineReducers({
+export default combineReducers({
   listAndPagination
 })
-
-export default server

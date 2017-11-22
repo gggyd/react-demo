@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import serverActionCreators from '../../../../actions/admin/resource/serverActionCreators'
 import { connect } from 'react-redux'
-import { Table, Form, Row, Col, Input, Button, Icon } from 'antd'
-import { Redirect } from 'react-router-dom'
+import { Table, Form, Row, Col, Button, Icon, Menu, Dropdown } from 'antd'
 
 class index extends Component {
   constructor() {
@@ -62,22 +61,46 @@ class index extends Component {
     })
   }
 
+  menus = (
+    <Menu>
+      <Menu.Item key="1">1st item</Menu.Item>
+      <Menu.Item key="2">2nd item</Menu.Item>
+      <Menu.Item key="3">3rd item</Menu.Item>
+    </Menu>
+  );
+
   render() {
     let { server } = this.props
     let { listAndPagination } = server
     let items = (listAndPagination && listAndPagination.items) || []
-    
-    return(
+
+    return (
       <div>
         <Row>
-          <Col span="12" offset="12">
-            <Button primary onClick={this.handleAdd}>新增</Button>
+          <Col span="4" offset="12">
+            <Button type="primary" icon="plus" onClick={this.handleAdd}>新增</Button>
+            <Dropdown overlay={this.menus} size="large">
+              <Button>
+                Actions <Icon type="down" />
+              </Button>
+            </Dropdown>
+          </Col>
+          <Col span="8">
+            <Button.Group>
+              <Button type="primary">
+                <Icon type="left" />Backward
+              </Button>
+              <Button type="primary" onClick={this.handleAdd}><Icon type="plus" /> 新增</Button>
+              <Button type="primary">
+                Forward<Icon type="right" />
+              </Button>
+            </Button.Group>
           </Col>
         </Row>
-        {items.length > 0 && <Table columns={this.colums} dataSource={items.map(((item, index) => {
+        {items.length > 0 && <Table columns={this.colums} dataSource={items.map((item, index) => {
           item.key = index;
           return item;
-        }))} />}
+        })} />}
       </div>
     )
   }

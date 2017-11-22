@@ -4,11 +4,12 @@ import {
   Route,
   Redirect,
   Switch,
-  withRouter,
   Link
 } from 'react-router-dom';
 import UserInfo from './containers/userInfo';
-import Server from './containers/admin/resource/server/index'
+import Server from './containers/admin/resource/server'
+import IDC from './containers/admin/resource/idc'
+
 import LayoutHeader from './containers/layout/header';
 import LayoutSider from './containers/layout/sider';
 
@@ -17,7 +18,8 @@ const breadcrumbNameMap = {
   '/': '首页',
   '/user': '用户',
   '/server': '服务器管理',
-  '/server/edit': '编辑'
+  '/server/edit': '编辑',
+  '/idc': '机房管理'
 };
 
 class LayoutComponent extends Component {
@@ -41,7 +43,7 @@ class LayoutComponent extends Component {
     let { location, match } = this.props
     const pathSnippets = location.pathname.split('/').filter(i => i)
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-      const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
+      const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
       return (
         <Breadcrumb.Item key={url}>
           <Link to={url}>
@@ -57,6 +59,7 @@ class LayoutComponent extends Component {
       </Breadcrumb.Item>
     )].concat(extraBreadcrumbItems)
 
+    let marginLeft = this.state.collapsed ? 64 : 200
     return (
       <Layout style={{
         height: '100%'
@@ -64,11 +67,11 @@ class LayoutComponent extends Component {
         <LayoutHeader collapsed={this.state.collapsed} toggleSider={this.toggleSider} />
         <Layout>
           <LayoutSider collapsed={this.state.collapsed} />
-          <Layout>
+          <Layout style={{ marginLeft }}>
 
-          <Breadcrumb style={{ margin: '16px 0 0 16px' }}>
-                {breadcrumbItems}
-              </Breadcrumb>
+            <Breadcrumb style={{ margin: '16px 0 0 16px' }}>
+              {breadcrumbItems}
+            </Breadcrumb>
             <Content style={{
               margin: '12px 16px 24px 16px',
               padding: 24,
@@ -78,7 +81,8 @@ class LayoutComponent extends Component {
                 <Route path={`${match.path}`} exact component={Server} />
                 <Route path={`${match.path}user`} component={UserInfo} />
                 <Route path={`${match.path}server`} component={Server} />
-                <Redirect to={`${match.url}`} /> 
+                <Route path={`${match.path}idc`} component={IDC} />
+                <Redirect to={`${match.url}`} />
               </Switch>
             </Content>
           </Layout>

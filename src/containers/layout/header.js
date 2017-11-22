@@ -16,7 +16,8 @@ const LayoutHeader = (props) => (
     <Menu mode="horizontal" style={{
       float: 'right',
       lineHeight: '62px',
-      marginRight: '8px'
+      marginRight: '8px',
+      borderBottom: 0
     }}>
       <Menu.Item key="mail">
         <Badge count={25}>

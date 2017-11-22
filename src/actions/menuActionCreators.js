@@ -4,7 +4,7 @@ export const REQUEST_MENU = 'REQUEST_MENU'
 export const RECEIVE_MENU = 'RECEIVE_MENU'
 
 let MenuActionCreators = {
-  getMenu() {
+  getMenu(pathname) {
     return (dispatch) => {
       dispatch({type: REQUEST_MENU})
       
@@ -12,7 +12,8 @@ let MenuActionCreators = {
         .then(json => {
           return dispatch({
             type: RECEIVE_MENU,
-            data: json.data
+            data: json.data,
+            pathname: pathname
           })
         })
         .catch((err) => {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Layout, Menu, Icon } from 'antd'
-import { NavLink, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import MenuActionCreators from '../../actions/menuActionCreators'
+import menuMap from '../../utils/menu-map'
 
 const { Sider } = Layout
 
@@ -10,6 +11,9 @@ const getIcon = (icon) => {
   let nextIcon = '';
 
   switch (icon) {
+    case 'fa-server':
+      nextIcon = 'home';
+      break;
     case 'fa-user':
       nextIcon = 'user';
       break;
@@ -36,25 +40,24 @@ const getIcon = (icon) => {
 }
 
 const getLinkTo = (path) => {
-  let to = '';
+  let to = '/';
 
-  switch (path) {
-    case '/page/admin/resource/idc/index.html':
-      to = '/about';
-      break;
-    case '/page/admin/user/index.html':
-      to = '/user';
-      break;
-    default:
-      to = '/'
+  let menuMapItem = menuMap.find((item) => (
+    item.path === path
+  ))
+
+  if (!menuMapItem) {
+    return to
   }
 
-  return to;
+  to = menuMapItem.pathname
+  return to
 }
 
 class LayoutSider extends Component {
   componentDidMount() {
-    this.props.getMenu();
+    let { location } = this.props
+    this.props.getMenu(location.pathname);
   }
 
   handleClickMenu({item, key, selectedKeys}) {
@@ -69,7 +72,7 @@ class LayoutSider extends Component {
   recursiveMenu = (list) => {
     var result = list.map((item) => {
       if (!item.hasChild) {
-        return <Menu.Item key={Date.now() * Math.random(10)} to={item.path} >
+        return <Menu.Item key={item.iconClass || item.path} to={item.path} >
           {item.iconClass && <Icon type={getIcon(item.iconClass)} />}
           <span>{item.menuName}</span>
         </Menu.Item>
@@ -78,7 +81,7 @@ class LayoutSider extends Component {
       return (
         <Menu.SubMenu 
           title={<span>{item.iconClass && <Icon type={getIcon(item.iconClass)} />}<span>{item.menuName}</span></span>} 
-          key={Date.now() * Math.random(10)}
+          key={item.iconClass || item.path}
         >
           {this.recursiveMenu(item.children)}
         </Menu.SubMenu>);
@@ -89,20 +92,42 @@ class LayoutSider extends Component {
 
   render() {
     let props = this.props;
-    let list = this.props.list.length > 0 && this.recursiveMenu(this.props.list);
+    let { list, defaultOpenKeys, defaultSelectedKeys } = props.menu;
+    let menus = list.length > 0 && this.recursiveMenu(list);
+    let overflow = props.collapsed ? {
+      overflow: 'initial'
+    } : {
+      overflowX: 'hidden',
+      overflowY: 'auto'
+    }
 
     return (
       <Sider
         trigger={null}
         collapsible
         collapsed={props.collapsed}
-        style={{
-          background: '#fff'
-        }}
+        style={ Object.assign({}, {
+          background: '#fff',
+          position: 'fixed', 
+          marginTop: '64px',
+          top: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 1000
+        }, overflow)}
       >
-        <Menu mode="inline" onSelect={this.handleClickMenu.bind(this)}>
-          {list}
+      { list.length > 0 && <Menu 
+          mode={!props.collapsed ? 'inline' : 'vertical'} 
+          onSelect={this.handleClickMenu.bind(this)}
+          defaultSelectedKeys={defaultSelectedKeys}
+          defaultOpenKeys={defaultOpenKeys}
+          style={{
+            height: '100%',
+            borderRight: 0
+          }} >
+          {menus}
         </Menu>
+      }
       </Sider>
     )
   }
@@ -110,12 +135,12 @@ class LayoutSider extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    list: state.menu.list
+    menu: state.menu
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMenu: () => (dispatch(MenuActionCreators.getMenu()))
+  getMenu: (pathname) => (dispatch(MenuActionCreators.getMenu(pathname)))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutSider))

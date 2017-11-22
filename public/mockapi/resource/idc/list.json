@@ -1,0 +1,30 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "pageSize": 10,
+    "totalPage": 9,
+    "total": 89,
+    "currentPage": 3,
+    "from": 20,
+    "to": 29,
+    "items": [
+      {
+        "idcID": 1,
+        "idcName": "南京机房"
+      },
+      {
+        "idcID": 2,
+        "idcName": "上海机房"
+      },
+      {
+        "idcID": 3,
+        "idcName": "北京机房"
+      },
+      {
+        "idcID": 4,
+        "idcName": "苏州机房"
+      }
+    ]
+  }
+}
