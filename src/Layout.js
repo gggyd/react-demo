@@ -9,6 +9,7 @@ import {
 import UserInfo from './containers/userInfo';
 import Server from './containers/admin/resource/server'
 import IDC from './containers/admin/resource/idc'
+import IDCEdit from './containers/admin/resource/idc/edit'
 
 import LayoutHeader from './containers/layout/header';
 import LayoutSider from './containers/layout/sider';
@@ -19,7 +20,8 @@ const breadcrumbNameMap = {
   '/user': '用户',
   '/server': '服务器管理',
   '/server/edit': '编辑',
-  '/idc': '机房管理'
+  '/idc': '机房管理',
+  '/idc/edit': '编辑'
 };
 
 class LayoutComponent extends Component {
@@ -79,9 +81,10 @@ class LayoutComponent extends Component {
             }}>
               <Switch>
                 <Route path={`${match.path}`} exact component={Server} />
-                <Route path={`${match.path}user`} component={UserInfo} />
-                <Route path={`${match.path}server`} component={Server} />
-                <Route path={`${match.path}idc`} component={IDC} />
+                <Route path={`${match.path}user`} exact component={UserInfo} />
+                <Route path={`${match.path}server`} exact component={Server} />
+                <Route path={`${match.path}idc`} exact component={IDC} />
+                <Route path={`${match.path}idc/edit`} exact component={IDCEdit} />
                 <Redirect to={`${match.url}`} />
               </Switch>
             </Content>
