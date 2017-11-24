@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
 import { Form, Input, Row, Col, Button } from 'antd'
 import { connect } from 'react-redux'
+import queryString from 'query-string'
 import idcActionCreators from '../../../../actions/admin/resource/idcActionCreators'
 
 const FormItem = Form.Item
 
 class edit extends Component {
+  state = {
+    queryParams: { }
+  }
+
+  componentDidMount = () => {
+    let { location } = this.props
+    this.setState({
+      queryParams: queryString.parse(location.search)
+    }, () => {
+      console.log('fetch api...')
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
 
@@ -14,7 +28,7 @@ class edit extends Component {
       console.log('values', values)
     })
   }
-  
+
   render() {
     const { getFieldDecorator } = this.props.form
     

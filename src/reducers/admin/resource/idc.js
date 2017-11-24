@@ -1,7 +1,8 @@
 import {
   REQUEST_IDC_LIST,
   RECEIVE_IDC_LIST,
-  SELECTED_ITEM
+  SELECTED_ITEM,
+  SET_IDC_LIST
 } from '../../../actions/admin/resource/idcActionCreators'
 import { combineReducers } from 'redux'
 
@@ -14,6 +15,8 @@ let listAndPagination = (state = initialData.listAndPagination, action) => {
   switch (action.type) {
     case RECEIVE_IDC_LIST:
       return action.data
+    case SET_IDC_LIST:
+      return Object.assign({ }, state, {items: action.data})
     default:
       return state
   }

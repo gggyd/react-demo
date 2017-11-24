@@ -4,6 +4,7 @@ export const REQUEST_IDC_LIST = 'REQUEST_IDC_LIST'
 export const RECEIVE_IDC_LIST = 'RECEIVE_IDC_LIST'
 export const SELECTED_ITEM = 'SELECTED_ITEM'
 export const CHANGE_SELECTED_ITEM = 'CHANGE_SELECTED_ITEM'
+export const SET_IDC_LIST = 'SET_IDC_LIST'
 
 let idcActionCreators = {
   getList(queryParams) {
@@ -34,7 +35,14 @@ let idcActionCreators = {
       type: CHANGE_SELECTED_ITEM,
       data: item
     }
-  )
+  ),
+
+  setList(list) {
+    return {
+      type: SET_IDC_LIST,
+      data: list
+    }
+  }
 }
 
 export default idcActionCreators
