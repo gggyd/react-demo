@@ -1,0 +1,19 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "id": 9,
+    "name": "server1",
+    "protocol": "ssh",
+    "ip": "192.168.220.21",
+    "username": "root",
+    "password": "******",
+    "loginMode": 1,
+    "idcPosId": 1,
+    "port": 22,
+    "type": 1,
+    "flage": 1,
+    "rdsServerId": 0,
+    "serverDifference": 1
+  }
+}

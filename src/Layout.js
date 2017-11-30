@@ -3,11 +3,12 @@ import { Layout, Breadcrumb } from 'antd';
 import {
   Route,
   Redirect,
-  Switch,
+  Switch as RouteSwitch,
   Link
 } from 'react-router-dom';
 import UserInfo from './containers/userInfo';
 import Server from './containers/admin/resource/server'
+import ServerEdit from './containers/admin/resource/server/edit'
 import IDC from './containers/admin/resource/idc'
 import IDCEdit from './containers/admin/resource/idc/edit'
 
@@ -79,14 +80,15 @@ class LayoutComponent extends Component {
               padding: 24,
               background: '#fff'
             }}>
-              <Switch>
+              <RouteSwitch>
                 <Route path={`${match.path}`} exact component={Server} />
                 <Route path={`${match.path}user`} exact component={UserInfo} />
                 <Route path={`${match.path}server`} exact component={Server} />
+                <Route path={`${match.path}server/edit`} exact component={ServerEdit} />
                 <Route path={`${match.path}idc`} exact component={IDC} />
                 <Route path={`${match.path}idc/edit`} exact component={IDCEdit} />
                 <Redirect to={`${match.url}`} />
-              </Switch>
+              </RouteSwitch>
             </Content>
           </Layout>
         </Layout>

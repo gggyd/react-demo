@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import serverActionCreators from '../../../../actions/admin/resource/serverActionCreators'
 import { connect } from 'react-redux'
 import { Table, Form, Row, Col, Button, Icon, Menu, Dropdown } from 'antd'
+import queryString from 'query-string'
 
 class index extends Component {
   constructor() {
@@ -14,7 +15,20 @@ class index extends Component {
     this.props.getListAndPagination()
   }
 
-  colums = [
+  handleModifyClick = (e, record) => {
+    e.preventDefault()
+
+    const { history } = this.props
+
+    history.push({
+      pathname: '/server/edit',
+      search: queryString.stringify({
+        id: record.id
+      })
+    })
+  }
+
+  columns = [
     {
       title: '名称',
       dataIndex: 'name',
@@ -49,6 +63,17 @@ class index extends Component {
       title: '机房',
       dataIndex: 'idcPositionName',
       key: 'idcPositionName'
+    },
+    {
+      title: '操作',
+      key: 'options',
+      render: (text, record) => {
+        return (
+          <div>
+            <a href="#" onClick={(e) => this.handleModifyClick(e, record)}>修改</a>
+          </div>
+        )
+      }
     }
   ]
 
@@ -61,14 +86,6 @@ class index extends Component {
     })
   }
 
-  menus = (
-    <Menu>
-      <Menu.Item key="1">1st item</Menu.Item>
-      <Menu.Item key="2">2nd item</Menu.Item>
-      <Menu.Item key="3">3rd item</Menu.Item>
-    </Menu>
-  );
-
   render() {
     let { server } = this.props
     let { listAndPagination } = server
@@ -76,28 +93,12 @@ class index extends Component {
 
     return (
       <div>
-        <Row>
-          <Col span="4" offset="12">
+        <Row style={{marginBottom: 10}}>
+          <Col span="2" offset="22">
             <Button type="primary" icon="plus" onClick={this.handleAdd}>新增</Button>
-            <Dropdown overlay={this.menus} size="large">
-              <Button>
-                Actions <Icon type="down" />
-              </Button>
-            </Dropdown>
-          </Col>
-          <Col span="8">
-            <Button.Group>
-              <Button type="primary">
-                <Icon type="left" />Backward
-              </Button>
-              <Button type="primary" onClick={this.handleAdd}><Icon type="plus" /> 新增</Button>
-              <Button type="primary">
-                Forward<Icon type="right" />
-              </Button>
-            </Button.Group>
           </Col>
         </Row>
-        {items.length > 0 && <Table columns={this.colums} dataSource={items.map((item, index) => {
+        {items.length > 0 && <Table columns={this.columns} dataSource={items.map((item, index) => {
           item.key = index;
           return item;
         })} />}

@@ -164,10 +164,15 @@ export default class RequestModule {
     }, contentType);
   }
 
-  post({ BASE_URL = RequestModule.BASE_URL, path = '/', body = undefined, method = 'POST', contentType = 'json' }) {
-    const packageRequestURL = `${BASE_URL}${path}`;
+  post({ BASE_URL = RequestModule.BASE_URL, path = '/', debugPath = '', body = undefined, method = 'POST', contentType = 'json' }) {
+    let packageRequestURL = `${BASE_URL}${path}`;
 
-    if (!body) {
+    if (config.isDebug) {
+      packageRequestURL = `${debugPath}`
+      method = 'GET'
+    }
+
+    if (!!body) {
       body = JSON.stringify(body);
     }
 
