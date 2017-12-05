@@ -8,6 +8,13 @@ let idc = {
       debugPath: '/mockapi/resource/idc/list.json',
       queryParams
     })
+  },
+
+  getDropDownList() {
+    return request.get({
+      path: '',
+      debugPath: '/mockapi/resource/idc/dropdownlist.json'
+    })
   }
 }
 

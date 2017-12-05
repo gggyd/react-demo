@@ -1,0 +1,22 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": [
+    {
+      "idcID": 1,
+      "idcName": "南京机房"
+    },
+    {
+      "idcID": 2,
+      "idcName": "上海机房"
+    },
+    {
+      "idcID": 3,
+      "idcName": "北京机房"
+    },
+    {
+      "idcID": 4,
+      "idcName": "苏州机房"
+    }
+  ]
+}
