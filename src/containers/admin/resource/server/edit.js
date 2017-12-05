@@ -273,7 +273,7 @@ const getMapPropsToFields = (fields) => {
   let nextFields = { }
 
   keys.forEach(key => {
-    nextFields[key] = fields[key]
+    nextFields[key] = Form.createFormField(fields[key])
   })
 
   return nextFields
@@ -282,7 +282,7 @@ const getMapPropsToFields = (fields) => {
 const wrapperEditForm = Form.create({
   mapPropsToFields(props) {
     const { detail, pubKey } = props
-    const nextFields = { ...getMapPropsToFields(detail), ...{ pubKey: {value: pubKey} } }
+    const nextFields = { ...getMapPropsToFields(detail), ...{ pubKey: Form.createFormField({value: pubKey}) } }
     return nextFields
   },
   onFieldsChange(props, fields) {
