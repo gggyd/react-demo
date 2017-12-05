@@ -28,6 +28,13 @@ let server = {
       debugPath: '/mockapi/response-success.json',
       body: server
     })
+  },
+
+  getPubKey() {
+    return request.get({
+      path: '',
+      debugPath: '/mockapi/resource/server/pubkey.json'
+    })
   }
 }
 

@@ -3,7 +3,8 @@ import {
   RECEIVE_SERVER_LIST,
   REQUEST_SERVER_DETAIL,
   RECEIVE_SERVER_DETAIL,
-  CHANGE_SERVER_DETAIL
+  CHANGE_SERVER_DETAIL,
+  RECEIVE_SERVER_PUBKEY
 } from '../../../actions/admin/resource/serverActionCreators'
 import { combineReducers } from 'redux'
 
@@ -27,7 +28,7 @@ const initialData = {
     ],
     name: { value: '' },
     password: { value: '' },
-    port: { value: 22 },
+    port: { value: '22' },
     protocol: { value: '' },
     protocolList: [
       {
@@ -88,9 +89,20 @@ let detail = (state = initialData.detail, action) => {
   }
 }
 
+
+let pubKey = (state = '', action) => {
+  switch (action.type) {
+    case RECEIVE_SERVER_PUBKEY:
+      return action.data
+    default:
+      return state
+  }
+}
+
 let server = combineReducers({
   listAndPagination,
-  detail
+  detail,
+  pubKey
 })
 
 export default server

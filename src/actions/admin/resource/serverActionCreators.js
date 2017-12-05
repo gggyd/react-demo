@@ -11,6 +11,8 @@ export const RECEIVE_SERVER_CREATE = 'RECEIVE_SERVER_CREATE'
 
 export const CHANGE_SERVER_DETAIL = 'CHANGE_SERVER_DETAIL'
 
+export const RECEIVE_SERVER_PUBKEY = 'RECEIVE_SERVER_PUBKEY'
+
 let serverActionCreator = {
   getList() {
     return (dispatch) => {
@@ -45,18 +47,17 @@ let serverActionCreator = {
     }
   },
 
-  create(detail) {
+  create(detail, cb) {
     return (dispatch) => {
       dispatch({
         type: REQUEST_SERVER_CREATE
       })
 
-      serverService.create(detail)
+      serverService.create(detail, cb)
         .then(json => {
-          dispatch({
-            type: RECEIVE_SERVER_CREATE,
-            data: json.data
-          })
+          if (!!cb) {
+            cb(json)
+          }
         })
     }
   },
@@ -65,6 +66,18 @@ let serverActionCreator = {
     return {
       type: CHANGE_SERVER_DETAIL,
       data: detail
+    }
+  },
+
+  getPubKey() {
+    return (dispatch) => {
+      serverService.getPubKey()
+        .then(json => {
+          dispatch({
+            type: RECEIVE_SERVER_PUBKEY,
+            data: json.data
+          })
+        })
     }
   }
 }
