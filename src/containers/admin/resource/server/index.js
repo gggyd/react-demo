@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Table, Form, Row, Col, Button, Icon, Menu, Dropdown } from 'antd'
 import queryString from 'query-string'
 
+import './index.css'
+
 class index extends Component {
   constructor() {
     super()

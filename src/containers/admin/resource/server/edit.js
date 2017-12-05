@@ -6,6 +6,8 @@ import queryString from 'query-string'
 import { connect } from 'react-redux'
 import messageUtil from '../../../../utils/message'
 
+import './edit.css'
+
 const { Item: FormItem } = Form
 const { TextArea } = Input
 const { Option } = Select
@@ -163,7 +165,7 @@ class edit extends Component {
     if (!!e && e.preventDefault) {
       e.preventDefault()
     }
-    
+
     let { history } = this.props
     
     history.push({
@@ -249,7 +251,7 @@ class edit extends Component {
               </FormItem>)
             })
           }
-          <FormItem {...tailFormItemLayout} >
+          <FormItem {...tailFormItemLayout} className="button-panel">
             <Button type="primary" htmlType="submit">确定</Button>
             <Button onClick={this.handleCancel}>取消</Button>
           </FormItem>
