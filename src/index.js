@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import RouterComponent from './router'
 
-import './style/index.css'
+import './style/index.less'
 
 import registerServiceWorker from './registerServiceWorker'
 

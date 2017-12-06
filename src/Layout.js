@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import React, { Component } from 'react'
+import { Layout, Breadcrumb } from 'antd'
 import {
   Route,
   Redirect,
   Switch as RouteSwitch,
   Link
-} from 'react-router-dom';
-import UserInfo from './containers/userInfo';
+} from 'react-router-dom'
+
+import UserInfo from './containers/userInfo'
 import Server from './containers/admin/resource/server'
 import ServerEdit from './containers/admin/resource/server/edit'
 import IDC from './containers/admin/resource/idc'
 import IDCEdit from './containers/admin/resource/idc/edit'
 
-import LayoutHeader from './containers/layout/header';
-import LayoutSider from './containers/layout/sider';
+import LayoutHeader from './containers/layout/header'
+import LayoutSider from './containers/layout/sider'
 
-const { Content } = Layout;
+const { Content } = Layout
 const breadcrumbNameMap = {
   '/': '首页',
   '/user': '用户',
@@ -95,6 +96,6 @@ class LayoutComponent extends Component {
       </Layout>
     )
   }
-};
+}
 
 export default LayoutComponent;

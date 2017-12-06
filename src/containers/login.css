@@ -11,10 +11,10 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -160px 0 0 -160px !important;
+  margin: -160px 0 0 -160px;
   width: 320px;
   height: 260px;
-  padding: 36px !important;
+  padding: 36px;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.08); }
   .login-form button {
     width: 100%; }
