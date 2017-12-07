@@ -1,39 +1,40 @@
 import { 
-  TOGGLE_AUTH_STATE,
   REQUEST_LOGIN,
   RECEIVE_LOGIN,
-  AUTH_LOGOUT
+  AUTH_LOGOUT,
+  CHANGE_AUTH_INFO
 } from '../actions/authActionCreators'
 
 import uInfoUtils from '../utils/uInfo'
 
 let AuthInitialData = {
-  authenticated: uInfoUtils.getUserInfo() || false
+  authenticated: uInfoUtils.getUserInfo() ? true : false,
+  userInfo: uInfoUtils.getUserInfo() || { }
 }
 
 const AuthState = (state = AuthInitialData, action) => {
   switch (action.type) {
-    case TOGGLE_AUTH_STATE:
-      uInfoUtils.setUInfo(!state.authenticated);
-      return Object.assign({}, state, {
-        authenticated: !state.authenticated
-      });
     case RECEIVE_LOGIN:
       let authenticated = false
-      if (!!action.data && !!action.data.username && action.data.state === 1) {
+      let userInfo = action.data
+      if (!!userInfo && !!userInfo.username && userInfo.state === 1) {
         authenticated = true
-        uInfoUtils.setUserInfo(JSON.stringify(action.data))
+        uInfoUtils.setUserInfo(userInfo)
       }
       
-      return Object.assign({}, state, {
-        authenticated: authenticated
-      });
-    case  AUTH_LOGOUT:
+      return { ...state, ...{
+        authenticated,
+        userInfo
+      } };
+    case AUTH_LOGOUT:
       uInfoUtils.removeUserInfo();
       
-      return Object.assign({}, state, {
-        authenticated: false
-      });
+      return { ...state, ...{
+        authenticated: false,
+        userInfo: { }
+      } };
+    case CHANGE_AUTH_INFO:
+      return { ...state, ...action.data }
     default:
       return state
   }

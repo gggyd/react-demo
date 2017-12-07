@@ -1,0 +1,243 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": [
+      {
+          "menuName": "首页",
+          "path": "/page/user/portal.html",
+          "hasChild": false,
+          "children": [],
+          "iconClass": "fa-dashboard"
+      },
+      {
+          "menuName": "基本信息",
+          "path": "/page/user/rds/detail.html",
+          "hasChild": false,
+          "children": [],
+          "iconClass": "fa-list"
+      },
+      {
+          "menuName": "数据库管理",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "数据库管理",
+                  "path": "/page/user/database/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "数据库变更",
+                  "path": "/page/user/dbchange/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-database"
+      },
+      {
+          "menuName": "监控",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "智能拓扑",
+                  "path": "/page/user/monitor/topo/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "实例智能监控",
+                  "path": "/page/user/monitor/rdschart/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "任务进度",
+                  "path": "/page/user/monitor/task/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "日志",
+                  "path": "/page/user/monitor/task/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "慢查询日志",
+                  "path": "/page/user/monitor/slowquery/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-eye"
+      },
+      {
+          "menuName": "数据安全",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "账号管理",
+                  "path": "/page/user/datasecure/account/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "SQL拦截",
+                  "path": "/page/user/datasecure/www/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "白名单",
+                  "path": "/page/user/datasecure/whitelist/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-shield"
+      },
+      {
+          "menuName": "备份",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "智能备份",
+                  "path": "/page/user/backup/backup/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "智能计划",
+                  "path": "/page/user/backupplan/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "恢复",
+                  "path": "/page/user/recovery/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "还原演练",
+                  "path": "/page/user/recoveryplayground/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-clone"
+      },
+      {
+          "menuName": "检测",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "在线变更检测",
+                  "path": "/page/user/event/history_events.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "主备数据一致性检测",
+                  "path": "/page/user/event/logger.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "表结构与表索引检测",
+                  "path": "/page/user/event/logger.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-check-square-o"
+      },
+      {
+          "menuName": "迁库上云",
+          "path": "",
+          "hasChild": false,
+          "iconClass": "fa-cloud-upload"
+      },
+      {
+          "menuName": "报表",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "TOP Table",
+                  "path": "/page/user/event/history_events.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "TOP DB",
+                  "path": "/page/user/event/logger.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "TOP SQL",
+                  "path": "/page/user/event/logger.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-bar-chart"
+      },
+      {
+          "menuName": "设置",
+          "path": "",
+          "hasChild": true,
+          "children": [
+              {
+                  "menuName": "参数设置",
+                  "path": "/page/user/setting/params/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "拓扑图预警设置",
+                  "path": "/page/user/setting/topoalarm/index.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              },
+              {
+                  "menuName": "数据库报警设置",
+                  "path": "/page/user/event/logger.html",
+                  "hasChild": false,
+                  "children": [],
+                  "iconClass": ""
+              }
+          ],
+          "iconClass": "fa-wrench"
+      }
+  ]
+}

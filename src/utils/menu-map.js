@@ -12,7 +12,8 @@ export default [
   {
     path: '/page/admin/resource/server/index.html',
     iconClass: '',
-    pathname: '/page/admin/resource/server/index.html'
+    pathname: '/server',
+    parent: 'fa-cloud'
   },
   {
     path: '/page/admin/resource/rdsserver/index.html',

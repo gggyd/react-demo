@@ -1,6 +1,7 @@
 import { 
   REQUEST_MENU,
-  RECEIVE_MENU
+  RECEIVE_MENU,
+  CHANGE_MENU_DEFAULT
 } from '../actions/menuActionCreators'
 import menuMap from '../utils/menu-map'
 
@@ -51,6 +52,7 @@ const getMenuDefaultKeysByPathname = (pathname) => {
   }
 
   defaultSelectedKeys = [menuMapItem.iconClass || menuMapItem.path]
+  defaultOpenKeys = [menuMapItem.parent]
 
   return {
     defaultOpenKeys,
@@ -69,6 +71,8 @@ const menuState = (state = InitialData, action ) => {
       }
 
       return Object.assign({}, state, { list: action.data }, menuDefaultKeys)
+    case CHANGE_MENU_DEFAULT:
+      return { ...state, ...action.data }
     default:
       return state
   }

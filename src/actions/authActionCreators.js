@@ -1,18 +1,11 @@
 import userService from '../api/services/user'
-export const TOGGLE_AUTH_STATE = 'TOGGLE_AUTH_STATE'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 export const REQUEST_LOGIN = 'REQUEST_LOGIN'
 export const RECEIVE_LOGIN = 'RECEIVE_LOGIN'
-
+export const CHANGE_AUTH_INFO = 'CHANGE_AUTH_INFO'
 
 
 let AuthActionCreators = {
-  toggleAuthState() {
-    return {
-      type: TOGGLE_AUTH_STATE
-    };
-  },
-
   login({ userName, password }) {
     return (dispatch) => {
       dispatch({ type: REQUEST_LOGIN });
@@ -26,9 +19,6 @@ let AuthActionCreators = {
           type: RECEIVE_LOGIN,
           data: json.data
         }))
-        // .catch(err => {
-        //   console.log(err)
-        // })
     }
   },
 
@@ -42,6 +32,15 @@ let AuthActionCreators = {
         .then(json => {
           console.log('logout', json)
         })
+    }
+  },
+
+  changeAuthInfo({rdsId}) {
+    return {
+      type: CHANGE_AUTH_INFO,
+      data: {
+        rdsId
+      }
     }
   }
 }

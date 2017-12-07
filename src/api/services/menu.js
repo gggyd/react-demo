@@ -8,6 +8,13 @@ let menu = {
       debugPath: '/mockapi/admin-menu.json',
       method: 'GET'
     })
+  },
+
+  getUserMenu() {
+    return request.get({
+      path: '/user/menu',
+      debugPath: '/mockapi/user-menu.json'
+    })
   }
 }
 

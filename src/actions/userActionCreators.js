@@ -12,15 +12,11 @@ let UserActionCreators = {
 
       userService.getAdminInfo()
         .then(json => {
-          console.table(json.data.items)
           return dispatch({
             type: RECEIVE_ADMIN_USER_LIST,
             data: json.data
           })
         })
-        // .catch((err) => {
-        //   console.log(err)
-        // })
     }
   }
 }

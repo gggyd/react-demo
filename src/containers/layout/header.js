@@ -8,13 +8,13 @@ const { Header } = Layout
 
 class LayoutHeader extends Component {
   componentDidMount() { 
-    console.log('mount')
+    
   }
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.theme.name !== this.props.theme.name) {
       let themeCss = document.querySelector('#themeCss')
-      themeCss.href = 'themes/' + nextProps.theme.name + '.css'
+      themeCss.href = '/themes/' + nextProps.theme.name + '.css'
     }
   }
 

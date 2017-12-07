@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
 import { Layout, Breadcrumb } from 'antd'
 import {
-  Route,
-  Redirect,
-  Switch as RouteSwitch,
   Link
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import UserInfo from './containers/userInfo'
-import Server from './containers/admin/resource/server'
-import ServerEdit from './containers/admin/resource/server/edit'
-import IDC from './containers/admin/resource/idc'
-import IDCEdit from './containers/admin/resource/idc/edit'
+import Routes from './routes'
 
 import LayoutHeader from './containers/layout/header'
 import LayoutSider from './containers/layout/sider'
@@ -23,7 +17,8 @@ const breadcrumbNameMap = {
   '/server': '服务器管理',
   '/server/edit': '编辑',
   '/idc': '机房管理',
-  '/idc/edit': '编辑'
+  '/idc/edit': '编辑',
+  '/info': '基本信息'
 };
 
 class LayoutComponent extends Component {
@@ -37,6 +32,16 @@ class LayoutComponent extends Component {
     collapsed: false
   }
 
+  componentDidMount() {
+    const { auth, history, location } = this.props
+    const { userInfo } = auth
+    if (userInfo.role === 1 && !auth.rdsId) {
+      history.replace({
+        pathname: '/rdslist'
+      })
+    }
+  }
+
   toggleSider = () => {
     this.setState({
       collapsed: !this.state.collapsed
@@ -44,7 +49,8 @@ class LayoutComponent extends Component {
   }
 
   render() {
-    let { location, match } = this.props
+    let { location, match, auth } = this.props
+    const { userInfo } = auth
     const pathSnippets = location.pathname.split('/').filter(i => i)
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
       const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
@@ -64,13 +70,21 @@ class LayoutComponent extends Component {
     )].concat(extraBreadcrumbItems)
 
     let marginLeft = this.state.collapsed ? 64 : 200
+
+    if (userInfo.role === 1 && !auth.rdsId) {
+      marginLeft = 0
+    }
+
     return (
       <Layout style={{
         height: '100%'
       }}>
         <LayoutHeader collapsed={this.state.collapsed} toggleSider={this.toggleSider} />
         <Layout>
-          <LayoutSider collapsed={this.state.collapsed} />
+          {
+            userInfo.role === 1 && !auth.rdsId ? null : <LayoutSider collapsed={this.state.collapsed} />
+          }
+          
           <Layout style={{ marginLeft }}>
 
             <Breadcrumb style={{ margin: '16px 0 0 16px' }}>
@@ -81,15 +95,7 @@ class LayoutComponent extends Component {
               padding: 24,
               background: '#fff'
             }}>
-              <RouteSwitch>
-                <Route path={`${match.path}`} exact component={Server} />
-                <Route path={`${match.path}user`} exact component={UserInfo} />
-                <Route path={`${match.path}server`} exact component={Server} />
-                <Route path={`${match.path}server/edit`} exact component={ServerEdit} />
-                <Route path={`${match.path}idc`} exact component={IDC} />
-                <Route path={`${match.path}idc/edit`} exact component={IDCEdit} />
-                <Redirect to={`${match.url}`} />
-              </RouteSwitch>
+              <Routes match={match} />
             </Content>
           </Layout>
         </Layout>
@@ -98,4 +104,16 @@ class LayoutComponent extends Component {
   }
 }
 
-export default LayoutComponent;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps)(LayoutComponent);

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
 import menu from './menu'
-import user from './user'
+import user from './user/index'
 import admin from './admin'
 import app from './app'
 

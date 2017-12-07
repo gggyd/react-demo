@@ -4,6 +4,7 @@ import { Layout, Menu, Icon } from 'antd'
 import { withRouter } from 'react-router-dom'
 import MenuActionCreators from '../../actions/menuActionCreators'
 import menuMap from '../../utils/menu-map'
+import { locale } from 'moment';
 
 const { Sider } = Layout
 
@@ -11,8 +12,8 @@ const getIcon = (icon) => {
   let nextIcon = '';
 
   switch (icon) {
-    case 'fa-server':
-      nextIcon = 'home';
+    case 'fa-dashboard':
+      nextIcon = 'dashboard';
       break;
     case 'fa-user':
       nextIcon = 'user';
@@ -51,21 +52,39 @@ const getLinkTo = (path) => {
   }
 
   to = menuMapItem.pathname
-  return to
+  return {
+    to,
+    defaultSelectedKeys: [menuMapItem.iconClass || menuMapItem.path],
+    defaultOpenKeys: !!menuMapItem.parent ? [menuMapItem.parent] : []
+  }
 }
 
 class LayoutSider extends Component {
   componentDidMount() {
-    let { location } = this.props
-    this.props.getMenu(location.pathname);
+    let { location, auth, getMenu, getUserNenu } = this.props
+    const { userInfo } = auth
+
+    if (!!userInfo) {
+      if (userInfo.role === 2) {
+        getMenu(location.pathname)
+      } else {
+        getUserNenu(locale.pathname)
+      }
+    }
   }
 
   handleClickMenu({item, key, selectedKeys}) {
-    let { history } = this.props
+    let { history, changeMenuDefault } = this.props
     let { to } = item.props
-    
+    let toObj = getLinkTo(to)
+
+    changeMenuDefault({
+      defaultOpenKeys: toObj.defaultOpenKeys, 
+      defaultSelectedKeys: toObj.defaultSelectedKeys
+    })
+
     history.push({
-      pathname: getLinkTo(to)
+      pathname: toObj.to
     })
   }
 
@@ -135,12 +154,15 @@ class LayoutSider extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    menu: state.menu
+    menu: state.menu,
+    auth: state.auth
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  getMenu: (pathname) => (dispatch(MenuActionCreators.getMenu(pathname)))
+  getMenu: (pathname) => (dispatch(MenuActionCreators.getMenu(pathname))),
+  getUserNenu: (pathname) => (dispatch(MenuActionCreators.getUserMenu(pathname))),
+  changeMenuDefault: ({ defaultOpenKeys, defaultSelectedKeys }) => (dispatch(MenuActionCreators.changeMenuDefault({ defaultOpenKeys, defaultSelectedKeys })))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutSider))

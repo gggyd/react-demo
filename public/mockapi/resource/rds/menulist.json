@@ -1,0 +1,42 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": [
+    {
+      "id": 1,
+      "rdsCode": "rds_001",
+      "name": "HotDB_RDS_MM_01",
+      "rdsType": 2,
+      "rdsTypeStr": "双机双主",
+      "connections": 200,
+      "readOnlyInstance": 0,
+      "healthScore": 90,
+      "status": 1,
+      "statusStr": "运行中"
+    },
+    {
+      "id": 2,
+      "rdsCode": "rds_002",
+      "name": "HotDB_RDS_MM_02",
+      "rdsType": 3,
+      "rdsTypeStr": "三机双主带从",
+      "connections": 300,
+      "readOnlyInstance": 1,
+      "healthScore": 86,
+      "status": 1,
+      "statusStr": "运行中"
+    },
+    {
+      "id": 3,
+      "rdsCode": "rds_003",
+      "name": "HotDB_RDS_MM_03",
+      "rdsType": 4,
+      "rdsTypeStr": "三机MGR",
+      "connections": 500,
+      "readOnlyInstance": 0,
+      "healthScore": 60,
+      "status": 1,
+      "statusStr": "运行中"
+    }
+  ]
+}

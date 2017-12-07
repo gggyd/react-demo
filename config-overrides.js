@@ -11,8 +11,7 @@ module.exports = function(config, env) {
   ], config);
   config = rewireLess.withLoaderOptions({
     modifyVars: {
-      '@primary-color': '#00ACAC',
-      '@body-background': '#d9e0e7'
+      '@primary-color': '#00ACAC'
     }
   })(config, env);
 

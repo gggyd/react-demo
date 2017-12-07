@@ -22,7 +22,6 @@ let serverActionCreator = {
 
       serverService.getList()
         .then(json => {
-          console.table(json.data.items)
           dispatch({
             type: RECEIVE_SERVER_LIST,
             data: json.data

@@ -5,7 +5,7 @@
       {
           "menuName": "首页",
           "path": "/page/admin/portal/index.html",
-          "iconClass": "fa-server",
+          "iconClass": "fa-dashboard",
           "hasChild": false,
           "children": []
       },
