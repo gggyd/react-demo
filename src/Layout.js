@@ -18,7 +18,9 @@ const breadcrumbNameMap = {
   '/server/edit': '编辑',
   '/idc': '机房管理',
   '/idc/edit': '编辑',
-  '/info': '基本信息'
+  '/info': '基本信息',
+  '/monitor': '监控',
+  '/monitor/rdschart': '实例智能监控'
 };
 
 class LayoutComponent extends Component {

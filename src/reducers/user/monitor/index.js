@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
 
-import rds from './rds'
-import monitor from './monitor'
+import rdschart from './rdschart'
 
 export default combineReducers({
-  rds,
-  monitor
+  rdschart
 })

@@ -24,5 +24,10 @@ export default [
     path: '/page/admin/resource/idc/index.html',
     iconClass: '',
     pathname: '/idc'
+  },
+  {
+    path: '/page/user/monitor/rdschart/index.html',
+    iconClass: '',
+    pathname: '/monitor/rdschart'
   }
 ]
