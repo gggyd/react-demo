@@ -136,6 +136,7 @@ class LayoutSider extends Component {
         }, overflow)}
       >
       { list.length > 0 && <Menu 
+          theme='dark'
           mode={!props.collapsed ? 'inline' : 'vertical'} 
           onSelect={this.handleClickMenu.bind(this)}
           defaultSelectedKeys={defaultSelectedKeys}

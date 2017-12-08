@@ -26,7 +26,7 @@ class rdslist extends Component {
         <Row gutter={16}>
         {
           menuList.length > 0 && menuList.map((item) => {
-            return <Col key={item.id} span={6}>
+            return <Col key={item.id} span={8}>
             <Card title={`${item.name}`} onClick={(id) => this.handleClick(item.id)} >
               <p>{`${item.rdsTypeStr}`}</p>
               <p>{`${item.statusStr}`}</p>

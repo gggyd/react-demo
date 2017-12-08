@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Layout, Menu, Icon, Badge } from 'antd'
 import AuthActionCreators from '../../actions/authActionCreators'
 import AppActionCreators from '../../actions/appActionCreators'
@@ -18,8 +19,20 @@ class LayoutHeader extends Component {
     }
   }
 
+  handleRdsChoice = () => {
+    const { changeAuthInfo, history } = this.props
+    changeAuthInfo({rdsId: ''})
+
+    history.replace({
+      pathname: '/rdslist'
+    })
+  }
+
   render() {
     const { props } = this
+    const { auth } = props
+    const { userInfo } = auth
+    
     return (
       <Header className={props.collapsed && 'fold'} style={{ background: '#fff', padding: 0 }} >
         <div className="logo" />
@@ -34,6 +47,11 @@ class LayoutHeader extends Component {
           marginRight: '8px',
           borderBottom: 0
         }}>
+          {
+            userInfo.role === 1 && !!auth.rdsId && <Menu.Item key="rds-choice">
+            <a onClick={this.handleRdsChoice}>实例选择</a>
+            </Menu.Item>
+          }
           <Menu.Item key="mail">
             <Badge count={25}>
               <Icon type="bell" />
@@ -57,13 +75,15 @@ class LayoutHeader extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  theme: state.app.theme
+  theme: state.app.theme,
+  auth: state.auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => (dispatch(AuthActionCreators.logout())),
-  changeAppTheme: (name) => (dispatch(AppActionCreators.changeAppTheme(name)))
+  changeAppTheme: (name) => (dispatch(AppActionCreators.changeAppTheme(name))),
+  changeAuthInfo: ({rdsId}) => (dispatch(AuthActionCreators.changeAuthInfo({rdsId})))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutHeader)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LayoutHeader))
 

@@ -7,9 +7,12 @@ import {
 
 import uInfoUtils from '../utils/uInfo'
 
+const { authenticated, userInfo, rdsId } = uInfoUtils.getAuthInfo();
+
 let AuthInitialData = {
-  authenticated: uInfoUtils.getUserInfo() ? true : false,
-  userInfo: uInfoUtils.getUserInfo() || { }
+  authenticated,
+  userInfo,
+  rdsId
 }
 
 const AuthState = (state = AuthInitialData, action) => {
@@ -31,9 +34,11 @@ const AuthState = (state = AuthInitialData, action) => {
       
       return { ...state, ...{
         authenticated: false,
-        userInfo: { }
+        userInfo: { },
+        rdsId: ''
       } };
     case CHANGE_AUTH_INFO:
+      uInfoUtils.setRdsId(action.data.rdsId)
       return { ...state, ...action.data }
     default:
       return state
