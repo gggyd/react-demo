@@ -1,0 +1,128 @@
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "clientNodes": [],
+    "dsNodes": [
+      {
+        "code": "HotDB_RDS_DB1063",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "master",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1063",
+        "status": 1,
+        "statusStr": "正常",
+        "to": ["HotDB_RDS_DB1064", "HotDB_RDS_DB1065", "HotDB_RDS_DB1066", "HotDB_RDS_DB1067"]
+      },
+      {
+        "code": "HotDB_RDS_DB1062",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "slave",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1062",
+        "status": 3,
+        "statusStr": "故障"
+      },
+      {
+        "code": "HotDB_RDS_DB1064",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "readonly",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1064",
+        "status": 3,
+        "statusStr": "故障"
+      },
+      {
+        "code": "HotDB_RDS_DB1065",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "readonly",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1065",
+        "status": 3,
+        "statusStr": "故障"
+      },
+      {
+        "code": "HotDB_RDS_DB1066",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "readonly",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1066",
+        "status": 1,
+        "statusStr": "正常"
+      },
+      {
+        "code": "HotDB_RDS_DB1067",
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10.0G)",
+        "diskWarn": 0,
+        "icon": "mysql",
+        "masterSlaveType": "readonly",
+        "memory": "690.0%(6.9G/1.0G)",
+        "memoryWarn": 0,
+        "nodeName": "HotDB_RDS_DB1067",
+        "status": 1,
+        "statusStr": "正常"
+      }
+    ],
+    "rdsNodes": [
+      {
+        "code": "HotDB_RDS_335",
+        "connections": 0,
+        "connectionsWarn": 0,
+        "cpu": "1.5%",
+        "cpuWarn": 0,
+        "disk": "193.0%(19.3G/10G)",
+        "diskWarn": 0,
+        "icon": "rds",
+        "memory": "690.0%(6.9G/1G)",
+        "memoryWarn": 0,
+        "name": "四机",
+        "nodeName": "HotDB_RDS_335",
+        "qps": 0,
+        "qpsWarn": 0,
+        "rdsType": 2,
+        "readonlyQty": 4,
+        "remainTime": "11个月",
+        "remainTimeWarn": 0,
+        "status": 3,
+        "statusStr": "故障",
+        "to": [
+          "HotDB_RDS_DB1063",
+          "HotDB_RDS_DB1062",
+          "HotDB_RDS_DB1064",
+          "HotDB_RDS_DB1065",
+          "HotDB_RDS_DB1066",
+          "HotDB_RDS_DB1067"
+        ],
+        "tps": 0,
+        "tpsWarn": 0
+      }
+    ]
+  }
+}

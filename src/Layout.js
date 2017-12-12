@@ -20,7 +20,8 @@ const breadcrumbNameMap = {
   '/idc/edit': '编辑',
   '/info': '基本信息',
   '/monitor': '监控',
-  '/monitor/rdschart': '实例智能监控'
+  '/monitor/rdschart': '实例智能监控',
+  '/monitor/topo': '智能拓扑'
 };
 
 class LayoutComponent extends Component {

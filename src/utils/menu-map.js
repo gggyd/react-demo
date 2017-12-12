@@ -29,5 +29,10 @@ export default [
     path: '/page/user/monitor/rdschart/index.html',
     iconClass: '',
     pathname: '/monitor/rdschart'
+  },
+  {
+    path: '/page/user/monitor/topo/index.html',
+    iconClass: '',
+    pathname: '/monitor/topo'
   }
 ]

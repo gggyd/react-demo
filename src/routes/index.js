@@ -17,6 +17,7 @@ const index = (props) => (
     <Route path={`${props.match.path}rdslist`} exact component={RdsList} />
     <Route path={`${props.match.path}info`} exact component={RdsInfo} />
     <Route path={`${props.match.path}monitor/rdschart`} exact component={Monitor.Rdschart} />
+    <Route path={`${props.match.path}monitor/topo`} exact component={Monitor.Topo} />
     <Resource match={props.match} />
     <Redirect to={`${props.match.url}`} />
   </RouteSwitch>
