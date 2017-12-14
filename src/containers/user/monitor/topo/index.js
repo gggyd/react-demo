@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Draggable from 'react-draggable'
 import topActionCreators from '../../../../actions/user/monitor/topoActionCreators'
 
 const rdsNode = {
@@ -374,6 +375,46 @@ class index extends Component {
     }
   }
 
+  DraggableEventHandler = (e, data) => {
+    let offsetLeft, offsetTop, x, y, nodeName, nextLines;
+
+    x = data.node.offsetLeft + data.x
+    y = data.node.offsetTop + data.y
+    nodeName = data.node.dataset.nodeName
+
+    nextLines = this.state.lines.map((line) => {
+      if (line.nodeName === nodeName) {
+        line.x1 = x
+        line.y1 = y
+      }
+
+      return line
+    })
+
+    this.setState({
+      lines: nextLines
+    })
+  }
+
+  DragEndEventHandler = (e, data) => {
+    let offsetLeft, offsetTop, x, y, nodeName;
+
+    x = data.node.offsetLeft + data.x
+    y = data.node.offsetTop + data.y
+    nodeName = data.node.dataset.nodeName
+
+    this.setState({
+      topo_position: {
+        ...this.state.topo_position, ...{
+          [nodeName]: {
+            left: x,
+            top: y
+          }
+        }
+      }
+    })
+  }
+
   render() {
     const { topo } = this.props
     const { rds } = topo
@@ -405,10 +446,18 @@ class index extends Component {
           rds.rdsNodes && rds.rdsNodes.length > 0 && rds.rdsNodes.map((node) => {
             let nodePos = this.state.topo_position[node.nodeName]
             if (!!nodePos) {
-              return <span key={node.nodeName} style={{ ...{
+              return (
+                <Draggable 
+                  key={node.nodeName}
+                  onDrag={this.DraggableEventHandler}
+                  onStop={this.DragEndEventHandler}
+                   >
+                <span style={{ ...{
                 top: nodePos.top,
                 left: nodePos.left,
-              }, ...rdsNodeStyle }}>rdsNode</span>
+              }, ...rdsNodeStyle }}
+               data-node-name={node.nodeName} >{node.name}</span>
+              </Draggable>)
             }
 
             return null
@@ -421,7 +470,7 @@ class index extends Component {
               return <span key={node.nodeName} style={{ ...{
                 top: nodePos.top,
                 left: nodePos.left
-              }, ...dsNodeStyle }} >dsNode</span>
+              }, ...dsNodeStyle }} >{node.name}</span>
             }
           })
         }
