@@ -5,7 +5,7 @@ import authActionCreators from '../actions/authActionCreators'
 import messageUtil from '../utils/message'
 
 export default class RequestModule {
-  static BASE_URL = 'http://192.168.200.89:5526'
+  static BASE_URL = config.BASE_URL;
   static headers = {
 
   };

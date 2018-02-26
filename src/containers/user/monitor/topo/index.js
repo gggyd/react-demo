@@ -384,8 +384,8 @@ class index extends Component {
 
     nextLines = this.state.lines.map((line) => {
       if (line.nodeName === nodeName) {
-        line.x1 = x
-        line.y1 = y
+        line.x1 = x + rdsNode.width / 2
+        line.y1 = y + rdsNode.height
       }
 
       return line
@@ -399,8 +399,8 @@ class index extends Component {
   DragEndEventHandler = (e, data) => {
     let offsetLeft, offsetTop, x, y, nodeName;
 
-    x = data.node.offsetLeft + data.x
-    y = data.node.offsetTop + data.y
+    x = data.node.offsetLeft
+    y = data.node.offsetTop
     nodeName = data.node.dataset.nodeName
 
     this.setState({
