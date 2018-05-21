@@ -1,0 +1,25 @@
+{
+  "common": {
+    "validation": {
+      "phone": {
+        "empty": "手机号码不能为空",
+        "invalid": "手机号码格式不正确"
+      }
+    }
+  },
+  "admin": {
+    "resource": {
+      "server": {
+        "table": {
+          "columns": {
+            "name": "名称",
+            "ip": "物理IP",
+            "type": "服务器用途",
+            "nodeCnt": "中间件节点数"
+          }
+        }
+      }
+    }
+  },
+  "admin.resource.server.table.columns.name": "名称一"
+}

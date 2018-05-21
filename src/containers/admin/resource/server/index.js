@@ -3,8 +3,13 @@ import serverActionCreators from '../../../../actions/admin/resource/serverActio
 import { connect } from 'react-redux'
 import { Table, Form, Row, Col, Button, Icon, Menu, Dropdown } from 'antd'
 import queryString from 'query-string'
+import { FormattedMessage } from 'react-intl'
+import messages from './messages'
 
 import './index.css'
+
+
+let name = <FormattedMessage {...messages.table.columns.name} />
 
 class index extends Component {
   constructor() {
@@ -32,7 +37,7 @@ class index extends Component {
 
   columns = [
     {
-      title: '名称',
+      title: name,
       dataIndex: 'name',
       key: 'name'
     },
