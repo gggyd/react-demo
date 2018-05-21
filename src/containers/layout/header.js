@@ -64,6 +64,9 @@ class LayoutHeader extends Component {
             <Menu.Item key="theme">
               <a onClick={props.changeAppTheme.bind(this, { name: 'theme1' })}>{props.theme && props.theme.name ? props.theme.name : ''}主题</a>
             </Menu.Item>
+            <Menu.Item key="language">
+              <a onClick={props.changeAppLanguage.bind(this, 'en')}>{props.theme && props.theme.name ? props.theme.name : ''}英文</a>
+            </Menu.Item>
             <Menu.Item key="logout">
               <a onClick={props.logout.bind(this)}>注销</a>
             </Menu.Item>
@@ -76,12 +79,14 @@ class LayoutHeader extends Component {
 
 const mapStateToProps = (state) => ({
   theme: state.app.theme,
+  language: state.app.language,
   auth: state.auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => (dispatch(AuthActionCreators.logout())),
   changeAppTheme: (name) => (dispatch(AppActionCreators.changeAppTheme(name))),
+  changeAppLanguage: (language) => (dispatch(AppActionCreators.changeAppLanguage(language))),
   changeAuthInfo: ({rdsId}) => (dispatch(AuthActionCreators.changeAuthInfo({rdsId})))
 })
 

@@ -8,7 +8,6 @@ import messages from './messages'
 
 import './index.css'
 
-
 let name = <FormattedMessage {...messages.table.columns.name} />
 
 class index extends Component {

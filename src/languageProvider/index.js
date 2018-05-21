@@ -6,12 +6,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { IntlProvider } from 'react-intl'
 
-const DEFAULT_LOCALE = 'zh'
-
 class LanguageProvider extends React.PureComponent {
   render() {
-    let local = DEFAULT_LOCALE
-
+    let local = this.props.language
     return (
       <IntlProvider locale = {local} key = {local} messages = { this.props.messages[local]} >
         {React.Children.only(this.props.children)}
@@ -20,4 +17,10 @@ class LanguageProvider extends React.PureComponent {
   }
 }
 
-export default LanguageProvider
+const mapStateToProps = (state) => {
+  return {
+    language: state.app.language
+  }
+}
+
+export default connect(mapStateToProps)(LanguageProvider)
